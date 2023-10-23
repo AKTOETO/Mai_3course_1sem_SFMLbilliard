@@ -133,7 +133,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\logger\Logger.cpp" />
     <ClCompile Include="src\Mai_3course_1sem_SFMLbilliard.cpp" />
+    <ClCompile Include="src\managers\SpriteDownloadManger.cpp" />
+    <ClCompile Include="src\managers\TextureDownloadManager.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -144,6 +147,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Context.h" />
+    <ClInclude Include="src\logger\Logger.h" />
+    <ClInclude Include="src\managers\IDownloadManager.h" />
+    <ClInclude Include="src\managers\BaseManager.h" />
+    <ClInclude Include="src\managers\SpriteDownloadManger.h" />
+    <ClInclude Include="src\managers\TextureDownloadManager.h" />
+    <ClInclude Include="src\objects\Ball.h" />
+    <ClInclude Include="src\objects\MoveableObject.h" />
+    <ClInclude Include="src\objects\OneSpriteMoveableObject.h" />
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,6 @@
 ﻿#include "pch.h"
+#include "managers/SpriteDownloadManger.h"
+
 using namespace sf;
 
 static int wind_width = 1200;//500;
@@ -6,7 +8,7 @@ static int wind_height = 1000;//100;
 
 static Vector2i wind_center(wind_width / 2, wind_height / 2);
 
-static int count_of_cats = 10;
+static int count_of_cats = 20;
 
 class Physics;
 class Cat : public Drawable
@@ -23,7 +25,7 @@ protected:
 public:
 	Cat(Sprite* _sprite, Vector2f _dir) :
 		m_sprite(_sprite), m_move_vector(_dir),
-		m_min_speed(0.f), m_max_speed(10000), m_acceleration(0.05), m_cur_speed(20)
+		m_min_speed(0.f), m_max_speed(10000), m_acceleration(0.05), m_cur_speed(100)
 	{
 		//std::cout << "pos: " << GetPos().x << " " << GetPos().y << "\n";
 	}
@@ -66,8 +68,8 @@ Sprite* CreateSprite(Texture& _texture)
 {
 	Sprite* sprite = new Sprite;
 	sprite->setTexture(_texture);
-	sprite->setScale({ 0.2,0.2 });
-	sprite->setOrigin(sf::Vector2f(25.f, 25.f));
+	sprite->setTextureRect(IntRect(1, 1, 63, 63));
+	//sprite->setOrigin(sf::Vector2f(25.f, 25.f));
 	sprite->setPosition(RandomVector(wind_width, wind_height));
 	return sprite;
 }
@@ -83,7 +85,7 @@ protected:
 
 public:
 	Physics(std::vector<Cat>* _cats) :
-		m_cats(_cats), m_energy_loss(0.5f),
+		m_cats(_cats), m_energy_loss(0.1f),
 		was_collision(count_of_cats, std::vector<bool>(count_of_cats, 0))
 	{}
 
@@ -191,7 +193,7 @@ int main()
 	window.setFramerateLimit(60);
 
 	sf::Texture texture;
-	if (!texture.loadFromFile("kot.jpg"))
+	if (!texture.loadFromFile("assets/textures/balls/Sprite-0001.png"))
 		std::cout << "texture didnt load\n";
 
 	std::vector<Cat> cats;
@@ -209,6 +211,8 @@ int main()
 	float fps;
 	float dT;
 
+	Engine::SpriteDownloadManager dwn(std::make_shared<Engine::Context>());
+	auto sp = dwn.Download("assets/sprites/cat.txt");
 
 	while (window.isOpen())
 	{
@@ -244,11 +248,15 @@ int main()
 		}
 
 		// проверка столкновений с границами
-		phys.ProcessCollide(dT);
+		//phys.ProcessCollide(dT);
+
 
 		window.clear(Color::Cyan);
 
-		for (Cat& cat : cats)window.draw(cat);
+
+		window.draw(*(*sp)());
+
+		//for (Cat& cat : cats)window.draw(cat);
 
 		window.display();
 	}
