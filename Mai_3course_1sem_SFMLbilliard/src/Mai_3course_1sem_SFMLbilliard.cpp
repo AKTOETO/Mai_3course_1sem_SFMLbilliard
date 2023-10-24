@@ -211,7 +211,12 @@ int main()
 	float fps;
 	float dT;
 
-	Engine::SpriteDownloadManager dwn(std::make_shared<Engine::Context>());
+	auto cnt = std::make_shared<Engine::Context>();
+
+	Engine::SpriteDownloadManager dwn(cnt);
+	//auto sp = dwn.Download("assets/sprites/ball.txt");
+	Engine::TextureDownloadManager tdwn(cnt);
+	std::shared_ptr<Texture> text = tdwn.Download("kot.jpg");
 	auto sp = dwn.Download("assets/sprites/ball.txt");
 
 	while (window.isOpen())

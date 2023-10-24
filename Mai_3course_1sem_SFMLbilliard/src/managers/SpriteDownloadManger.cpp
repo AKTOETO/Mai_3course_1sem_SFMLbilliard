@@ -5,8 +5,21 @@ namespace Engine
 {
 	std::shared_ptr<NewSprite> Engine::SpriteDownloadManager::Download(const std::string& _filepath)
 	{
-		std::shared_ptr<NewSprite> sp(new NewSprite);
+		std::shared_ptr<NewSprite> sp;
 
+		sp = Download(_filepath, nullptr);	
+
+		return sp;
+	}
+
+	std::shared_ptr<NewSprite> SpriteDownloadManager::Download(const std::string& _filepath, std::shared_ptr<Texture> _texture)
+	{
+		// создание спрайта и установка текстуры
+		std::shared_ptr<NewSprite> sp(new NewSprite);
+		//sp->m_texture = _texture;
+		sp->SetTexture(_texture);
+
+		//
 		// открытие файла с описанием спрайта
 		//
 		// пример файла:
@@ -25,25 +38,26 @@ namespace Engine
 		else
 		{
 			// проходимся по каждой строке
-			for (std::string str;getline(fin, str);)
+			for (std::string str; getline(fin, str);)
 			{
 				std::istringstream instr(str);
-				
+
 				// определяем тип вводимых данных
 				instr >> str;
 
 				// в зависимости от типа, считываем данных
-				
+
 				// чтение текстуры
-				if(str == "texture")
+				if (str == "texture" && !(*sp).m_texture)
 				{
 					instr >> str;
 
-					(*sp).m_texture = m_texture_downloader->Download(str);
-					(*sp)()->setTexture(*(*sp).m_texture);
+					sp->SetTexture(m_texture_downloader->Download(str));
+					//(*sp).m_texture = m_texture_downloader->Download(str);
+					//(*sp)()->setTexture(*(*sp).m_texture);
 				}
 				// чтение квадрата спрайта
-				else if(str == "textureRect")
+				else if (str == "textureRect")
 				{
 					//
 					// Rect<T>::Rect(T rectLeft, T rectTop, T rectWidth, T rectHeight) :
@@ -78,7 +92,7 @@ namespace Engine
 					(*sp)()->setTextureRect(irect);
 				}
 				// чтение позиции спрайта
-				else if(str == "position")
+				else if (str == "position")
 				{
 					Vector2f pos;
 					instr >> pos.x;
@@ -87,7 +101,7 @@ namespace Engine
 					(*sp)()->setPosition(pos);
 				}
 				// чтение вращения
-				else if(str == "rotation")
+				else if (str == "rotation")
 				{
 					float rot;
 					instr >> rot;
@@ -95,7 +109,7 @@ namespace Engine
 					(*sp)()->setRotation(rot);
 				}
 				// чтение размера
-				else if(str == "scale")
+				else if (str == "scale")
 				{
 					Vector2f sc;
 
