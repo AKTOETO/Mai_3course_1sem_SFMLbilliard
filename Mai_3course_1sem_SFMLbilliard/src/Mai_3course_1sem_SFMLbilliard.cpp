@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "managers/SpriteDownloadManger.h"
+#include "managers/BallObjectDownloadManager.h"
 
 using namespace sf;
 
@@ -218,9 +218,12 @@ int main()
 	//Engine::TextureDownloadManager tdwn(cnt);
 	//std::shared_ptr<Texture> text = tdwn.Download("kot.jpg");
 	//auto sp = dwn.Download("assets/sprites/ball.txt");
-	Engine::TextureDownloadManager tdwn(cnt);
-	std::shared_ptr<Texture> text = tdwn.Download("kot.jpg");
-	auto sp = dwn.Download("assets/sprites/ball.txt");
+	//Engine::TextureDownloadManager tdwn(cnt);
+	//std::shared_ptr<Texture> text = tdwn.Download("kot.jpg");
+	//auto sp = dwn.Download("assets/sprites/ball.txt");
+
+	Engine::BallObjectDownloadManager dwn(cnt);
+	auto ball = dwn.Download("assets/gameObjects/OneSpriteMoveableObject/ball.txt");
 
 	while (window.isOpen())
 	{
@@ -262,7 +265,7 @@ int main()
 		window.clear(Color::Cyan);
 
 
-		window.draw(*(*sp)());
+		window.draw(*ball);
 
 		//for (Cat& cat : cats)window.draw(cat);
 

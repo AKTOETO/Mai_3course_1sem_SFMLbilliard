@@ -3,19 +3,19 @@
 
 namespace Engine
 {
-	std::shared_ptr<NewSprite> Engine::SpriteDownloadManager::Download(const std::string& _filepath)
+	std::shared_ptr<CustomSprite> Engine::SpriteDownloadManager::Download(const std::string& _filepath)
 	{
-		std::shared_ptr<NewSprite> sp;
+		std::shared_ptr<CustomSprite> sp;
 
 		sp = Download(_filepath, nullptr);	
 
 		return sp;
 	}
 
-	std::shared_ptr<NewSprite> SpriteDownloadManager::Download(const std::string& _filepath, std::shared_ptr<Texture> _texture)
+	std::shared_ptr<CustomSprite> SpriteDownloadManager::Download(const std::string& _filepath, std::shared_ptr<Texture> _texture)
 	{
 		// создание спрайта и установка текстуры
-		std::shared_ptr<NewSprite> sp(new NewSprite);
+		std::shared_ptr<CustomSprite> sp(new CustomSprite);
 		//sp->m_texture = _texture;
 		sp->SetTexture(_texture);
 

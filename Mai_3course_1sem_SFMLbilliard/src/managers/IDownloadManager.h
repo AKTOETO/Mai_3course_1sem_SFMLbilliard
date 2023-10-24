@@ -13,7 +13,7 @@ namespace Engine
 		IDownloadManager(std::shared_ptr<Engine::Context> _cntxt) :
 			BaseManager(_cntxt)
 		{}
-		//virtual ~IDownloadManager() = 0;
+		virtual ~IDownloadManager() {};
 
 		// метод загрузки объекта
 		virtual std::shared_ptr<Ty> Download(const std::string& _filename) = 0;

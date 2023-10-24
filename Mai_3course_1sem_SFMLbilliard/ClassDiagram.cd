@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cat" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAACAAQAAACAgIIIAAggAAAAAACAAAAAAAAAARA=</HashCode>
+      <FileName>src\Mai_3course_1sem_SFMLbilliard.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Physics" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkAAAAAAAAAAAAAAIIACAAAAAQAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>src\Mai_3course_1sem_SFMLbilliard.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logger" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQoAAIAEMAAQAAAAAAABAgQAAAQAIAABAAAEACAAA=</HashCode>
+      <FileName>src\logger\Logger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::IDownloadManager&lt;Ty&gt;" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAABAAAA=</HashCode>
+      <FileName>src\managers\IDownloadManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::BaseManager" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\managers\BaseManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::SpriteDownloadManager" Collapsed="true">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAACAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>src\managers\SpriteDownloadManger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::TextureDownloadManager" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAEA=</HashCode>
+      <FileName>src\managers\TextureDownloadManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::BallObjectDownloadManager" Collapsed="true">
+    <Position X="3.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>src\managers\BallObjectDownloadManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="MoveableObject" Collapsed="true">
+    <Position X="1" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAUAAgAAAAAAAEAAAAAAgA=</HashCode>
+      <FileName>src\objects\MoveableObject.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Engine::Context" Collapsed="true">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Context.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="CustomSprite" Collapsed="true">
+    <Position X="10" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAgAAAAAAEAAAAAAgACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\datatypes\CustomSprite.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Engine::Ball" Collapsed="true">
+    <Position X="1" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\objects\Ball.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Engine::OneSpriteMoveableObject" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\objects\OneSpriteMoveableObject.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

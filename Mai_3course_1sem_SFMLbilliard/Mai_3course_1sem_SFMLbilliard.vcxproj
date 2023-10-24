@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="src\logger\Logger.cpp" />
     <ClCompile Include="src\Mai_3course_1sem_SFMLbilliard.cpp" />
+    <ClCompile Include="src\managers\BallObjectDownloadManager.cpp" />
     <ClCompile Include="src\managers\SpriteDownloadManger.cpp" />
     <ClCompile Include="src\managers\TextureDownloadManager.cpp" />
     <ClCompile Include="src\pch.cpp">
@@ -148,7 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Context.h" />
+    <ClInclude Include="src\datatypes\CustomSprite.h" />
     <ClInclude Include="src\logger\Logger.h" />
+    <ClInclude Include="src\managers\BallObjectDownloadManager.h" />
     <ClInclude Include="src\managers\IDownloadManager.h" />
     <ClInclude Include="src\managers\BaseManager.h" />
     <ClInclude Include="src\managers\SpriteDownloadManger.h" />
