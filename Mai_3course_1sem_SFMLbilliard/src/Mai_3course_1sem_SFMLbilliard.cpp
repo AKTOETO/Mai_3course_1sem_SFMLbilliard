@@ -213,7 +213,10 @@ int main()
 
 	auto cnt = std::make_shared<Engine::Context>();
 
-	Engine::SpriteDownloadManager dwn(cnt);
+	//Engine::SpriteDownloadManager dwn(cnt);
+	////auto sp = dwn.Download("assets/sprites/ball.txt");
+	//Engine::TextureDownloadManager tdwn(cnt);
+	//std::shared_ptr<Texture> text = tdwn.Download("kot.jpg");
 	//auto sp = dwn.Download("assets/sprites/ball.txt");
 	Engine::TextureDownloadManager tdwn(cnt);
 	std::shared_ptr<Texture> text = tdwn.Download("kot.jpg");
