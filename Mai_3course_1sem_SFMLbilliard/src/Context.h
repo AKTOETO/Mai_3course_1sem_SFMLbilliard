@@ -1,4 +1,4 @@
-#ifndef CONTEXT_H
+п»ї#ifndef CONTEXT_H
 #define CONTEXT_H
 
 #include "pch.h"
@@ -6,17 +6,17 @@
 
 namespace Engine
 {
-	// контекст программы
+	// РєРѕРЅС‚РµРєСЃС‚ РїСЂРѕРіСЂР°РјРјС‹
 	struct Context
 	{
-		// логгер
+		// Р»РѕРіРіРµСЂ
 		std::unique_ptr<Logger> m_log;
 
 #define INFO(msg) m_context->m_log->Info(msg)
 #define WARN(msg) m_context->m_log->Warning(msg)
 #define ERR(msg) m_context->m_log->Error(msg)
 
-		// конструктор
+		// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 		Context() :
 			m_log(std::make_unique<Logger>(Logger::LogMode::ConsoleAndFile))
 		{}

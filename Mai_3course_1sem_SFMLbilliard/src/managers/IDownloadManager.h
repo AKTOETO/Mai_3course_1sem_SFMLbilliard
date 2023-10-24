@@ -1,4 +1,4 @@
-#ifndef IDOWNLOADMANAGER_H
+п»ї#ifndef IDOWNLOADMANAGER_H
 #define IDOWNLOADMANAGER_H
 
 #include "BaseManager.h"
@@ -15,7 +15,7 @@ namespace Engine
 		{}
 		//virtual ~IDownloadManager() = 0;
 
-		// метод загрузки объекта
+		// РјРµС‚РѕРґ Р·Р°РіСЂСѓР·РєРё РѕР±СЉРµРєС‚Р°
 		virtual std::shared_ptr<Ty> Download(const std::string& _filename) = 0;
 	};
 }

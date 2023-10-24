@@ -212,7 +212,7 @@ int main()
 	float dT;
 
 	Engine::SpriteDownloadManager dwn(std::make_shared<Engine::Context>());
-	auto sp = dwn.Download("assets/sprites/cat.txt");
+	auto sp = dwn.Download("assets/sprites/ball.txt");
 
 	while (window.isOpen())
 	{

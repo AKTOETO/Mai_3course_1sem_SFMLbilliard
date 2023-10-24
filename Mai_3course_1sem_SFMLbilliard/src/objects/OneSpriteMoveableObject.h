@@ -1,4 +1,4 @@
-#ifndef ONESPRITEMOVEABLEOBJECT_H
+п»ї#ifndef ONESPRITEMOVEABLEOBJECT_H
 #define ONESPRITEMOVEABLEOBJECT_H
 
 #include "MoveableObject.h"
@@ -6,7 +6,7 @@
 struct OneSpriteMoveableObject:
 	MoveableObject
 {
-	// картинка, отображаемая на экране
+	// РєР°СЂС‚РёРЅРєР°, РѕС‚РѕР±СЂР°Р¶Р°РµРјР°СЏ РЅР° СЌРєСЂР°РЅРµ
 	std::shared_ptr<Sprite> m_sprite;
 };
 

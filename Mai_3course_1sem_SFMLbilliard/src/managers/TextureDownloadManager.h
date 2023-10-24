@@ -1,4 +1,4 @@
-#ifndef TEXTUREDOWNLOADMANAGER_H
+п»ї#ifndef TEXTUREDOWNLOADMANAGER_H
 #define TEXTUREDOWNLOADMANAGER_H
 
 #include "IDownloadManager.h"
@@ -12,7 +12,7 @@ namespace Engine
 			IDownloadManager(_cntxt)
 		{}
 
-		// загрузка текстуры
+		// Р·Р°РіСЂСѓР·РєР° С‚РµРєСЃС‚СѓСЂС‹
 		std::shared_ptr<Texture> Download(const std::string& _filepath) override;
 	};
 }

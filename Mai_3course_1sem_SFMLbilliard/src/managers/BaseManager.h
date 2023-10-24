@@ -1,10 +1,10 @@
-#ifndef BASEMANAGER_H
+п»ї#ifndef BASEMANAGER_H
 #define BASEMANAGER_H
 
 #include "../Context.h"
 namespace Engine
 {
-	// базовый класс менеджера
+	// Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РјРµРЅРµРґР¶РµСЂР°
 	class BaseManager
 	{
 	protected:

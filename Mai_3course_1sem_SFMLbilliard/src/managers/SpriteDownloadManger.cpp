@@ -1,4 +1,4 @@
-#include "pch.h"
+п»ї#include "pch.h"
 #include "SpriteDownloadManger.h"
 
 namespace Engine
@@ -7,9 +7,9 @@ namespace Engine
 	{
 		std::shared_ptr<NewSprite> sp(new NewSprite);
 
-		// открытие файла с описанием спрайта
+		// РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° СЃ РѕРїРёСЃР°РЅРёРµРј СЃРїСЂР°Р№С‚Р°
 		//
-		// пример файла:
+		// РїСЂРёРјРµСЂ С„Р°Р№Р»Р°:
 		// texture: assets/textures/balls/Sprite-0001.png
 		// textureRect: 0 0 64 64
 		// position: 0 0
@@ -18,98 +18,96 @@ namespace Engine
 		//
 
 		std::ifstream fin(_filepath);
-		if (!fin) WARN("sprite file: " + _filepath + " wasn't open");
-
-		// чтение параметров
-		std::string str;
-		std::istringstream sstr;
-
-		// чтение пути до текстуры
-		std::getline(fin, str);
-		sstr.clear();
-		sstr.str(str);
-		sstr >> str >> str;
-
-
-		// TODO текстру нельзя удалять!!!
-		(*sp).m_texture = m_texture_downloader->Download(str);
-		(*sp)()->setTexture(*(*sp).m_texture);
-
-		// чтение квадрата спрайта
-		std::getline(fin, str);
-		sstr.clear();
-		sstr.str(str);
-		sstr >> str;
-
-		//
-		// Rect<T>::Rect(T rectLeft, T rectTop, T rectWidth, T rectHeight) :
-		// left  (rectLeft),
-		// top   (rectTop),
-		// width (rectWidth),
-		// height(rectHeight)
-		//
-
-		IntRect irect;
-		sstr >> irect.left;
-		sstr >> irect.top;
-		sstr >> irect.width;
-		sstr >> irect.height;
-
-		// если вдруг задана ширина и высота прямоугольника больше размеров текстуры
-		// изменям размер прямоугольника на размер текустуры
-		if ((*sp).m_texture->getSize().x < irect.width)
+		// РµСЃР»Рё С„Р°Р№Р» РЅРµ Р±С‹Р» РѕС‚РєСЂС‹С‚
+		if (!fin)
+			WARN("sprite file: " + _filepath + " wasn't open");
+		// С‡С‚РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ
+		else
 		{
-			INFO("texture size was changed from: "+ std::to_string(irect.width)+
-				" to: "+ std::to_string((*sp).m_texture->getSize().x));
-			irect.width = (*sp).m_texture->getSize().x;
+			// РїСЂРѕС…РѕРґРёРјСЃСЏ РїРѕ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ
+			for (std::string str;getline(fin, str);)
+			{
+				std::istringstream instr(str);
+				
+				// РѕРїСЂРµРґРµР»СЏРµРј С‚РёРї РІРІРѕРґРёРјС‹С… РґР°РЅРЅС‹С…
+				instr >> str;
+
+				// РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР°, СЃС‡РёС‚С‹РІР°РµРј РґР°РЅРЅС‹С…
+				
+				// С‡С‚РµРЅРёРµ С‚РµРєСЃС‚СѓСЂС‹
+				if(str == "texture")
+				{
+					instr >> str;
+
+					(*sp).m_texture = m_texture_downloader->Download(str);
+					(*sp)()->setTexture(*(*sp).m_texture);
+				}
+				// С‡С‚РµРЅРёРµ РєРІР°РґСЂР°С‚Р° СЃРїСЂР°Р№С‚Р°
+				else if(str == "textureRect")
+				{
+					//
+					// Rect<T>::Rect(T rectLeft, T rectTop, T rectWidth, T rectHeight) :
+					// left  (rectLeft),
+					// top   (rectTop),
+					// width (rectWidth),
+					// height(rectHeight)
+					//
+
+					IntRect irect;
+					instr >> irect.left;
+					instr >> irect.top;
+					instr >> irect.width;
+					instr >> irect.height;
+
+					// РµСЃР»Рё РІРґСЂСѓРі Р·Р°РґР°РЅР° С€РёСЂРёРЅР° Рё РІС‹СЃРѕС‚Р° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° Р±РѕР»СЊС€Рµ СЂР°Р·РјРµСЂРѕРІ С‚РµРєСЃС‚СѓСЂС‹
+					// РёР·РјРµРЅСЏРј СЂР°Р·РјРµСЂ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° РЅР° СЂР°Р·РјРµСЂ С‚РµРєСѓСЃС‚СѓСЂС‹
+					if ((*sp).m_texture->getSize().x < irect.width)
+					{
+						INFO("texture size was changed from: " + std::to_string(irect.width) +
+							" to: " + std::to_string((*sp).m_texture->getSize().x));
+						irect.width = (*sp).m_texture->getSize().x;
+					}
+					if ((*sp).m_texture->getSize().y < irect.height)
+					{
+
+						INFO("texture size was changed from: " + std::to_string(irect.height) +
+							" to: " + std::to_string((*sp).m_texture->getSize().y));
+						irect.height = (*sp).m_texture->getSize().y;
+					}
+
+					(*sp)()->setTextureRect(irect);
+				}
+				// С‡С‚РµРЅРёРµ РїРѕР·РёС†РёРё СЃРїСЂР°Р№С‚Р°
+				else if(str == "position")
+				{
+					Vector2f pos;
+					instr >> pos.x;
+					instr >> pos.y;
+
+					(*sp)()->setPosition(pos);
+				}
+				// С‡С‚РµРЅРёРµ РІСЂР°С‰РµРЅРёСЏ
+				else if(str == "rotation")
+				{
+					float rot;
+					instr >> rot;
+
+					(*sp)()->setRotation(rot);
+				}
+				// С‡С‚РµРЅРёРµ СЂР°Р·РјРµСЂР°
+				else if(str == "scale")
+				{
+					Vector2f sc;
+
+					instr >> sc.x;
+					instr >> sc.y;
+
+					(*sp)()->setScale(sc);
+				}
+			}
 		}
-		if ((*sp).m_texture->getSize().y < irect.height)
-		{
 
-			INFO("texture size was changed from: " + std::to_string(irect.height) +
-				" to: " + std::to_string((*sp).m_texture->getSize().y));
-			irect.height = (*sp).m_texture->getSize().y;
-		}
-
-		(*sp)()->setTextureRect(irect);
-
-		// чтение позиции спрайта
-		std::getline(fin, str);
-		sstr.clear();
-		sstr.str(str);
-		sstr >> str;
-
-		Vector2f pos;
-		sstr >> pos.x;
-		sstr >> pos.y;
-
-		(*sp)()->setPosition(pos);
-
-		// чтение вращения
-		std::getline(fin, str);
-		sstr.clear();
-		sstr.str(str);
-		sstr >> str;
-
-		float rot;
-		sstr >> rot;
-
-		(*sp)()->setRotation(rot);
-
-		// чтение размера
-		std::getline(fin, str);
-		sstr.clear();
-		sstr.str(str);
-		sstr >> str;
-
-		Vector2f sc;
-
-		sstr >> sc.x;
-		sstr >> sc.y;
-
-		(*sp)()->setScale(sc);
-
-		// закрытие файла
+		// Р·Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
 		fin.close();
 
 		return sp;

@@ -1,11 +1,11 @@
-#ifndef SPRITEDOWNLOADMANAGER_H
+п»ї#ifndef SPRITEDOWNLOADMANAGER_H
 #define SPRITEDOWNLOADMANAGER_H
 
 #include "TextureDownloadManager.h"
 
 namespace Engine
 {
-	// структрура спрайта с текстурой
+	// СЃС‚СЂСѓРєС‚СЂСѓСЂР° СЃРїСЂР°Р№С‚Р° СЃ С‚РµРєСЃС‚СѓСЂРѕР№
 	struct NewSprite
 	{
 		std::shared_ptr<Sprite> m_sprite;
@@ -18,7 +18,7 @@ namespace Engine
 		std::shared_ptr<Sprite> operator()() { return m_sprite; }
 	};
 
-	// загрузчик спрайтов
+	// Р·Р°РіСЂСѓР·С‡РёРє СЃРїСЂР°Р№С‚РѕРІ
 	class SpriteDownloadManager :
 		public IDownloadManager<NewSprite>
 	{
@@ -31,7 +31,7 @@ namespace Engine
 			m_texture_downloader(std::make_unique<TextureDownloadManager>(_cntxt))
 		{}
 
-		// загрузка спрайта
+		// Р·Р°РіСЂСѓР·РєР° СЃРїСЂР°Р№С‚Р°
 		std::shared_ptr<NewSprite> Download(const std::string& _filepath) override;
 	};
 }

@@ -1,5 +1,5 @@
 texture kot.jpg
-textureRect 0 0 3900 390534
+textureRect 0 0 390 390
 position 100.0 100.0
 rotation 0.0
 scale 1.0 1.0

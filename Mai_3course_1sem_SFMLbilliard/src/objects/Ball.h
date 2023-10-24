@@ -1,13 +1,13 @@
-#ifndef BALL_H
+п»ї#ifndef BALL_H
 #define BALL_H
 
 #include "OneSpriteMoveableObject.h"
 
-// стрктура шара
+// СЃС‚СЂРєС‚СѓСЂР° С€Р°СЂР°
 struct Ball:
 	OneSpriteMoveableObject
 {
-	// радиус шара
+	// СЂР°РґРёСѓСЃ С€Р°СЂР°
 	float radius;
 };
 
