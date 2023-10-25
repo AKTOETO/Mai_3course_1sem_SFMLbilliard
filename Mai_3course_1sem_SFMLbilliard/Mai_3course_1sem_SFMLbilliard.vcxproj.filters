@@ -37,6 +37,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="..\README.md" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h">
@@ -73,6 +74,12 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\managers\BallObjectDownloadManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\BaseObjectDownloadManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\world\World.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

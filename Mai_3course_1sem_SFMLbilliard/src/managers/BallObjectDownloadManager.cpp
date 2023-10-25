@@ -6,7 +6,7 @@ namespace Engine
 	std::shared_ptr<Ball> Engine::BallObjectDownloadManager::Download(const std::string& _filepath)
 	{
 		// создание шара
-		std::shared_ptr<Ball> ball(new Ball(0));
+		std::shared_ptr<Ball> ball(new Ball(GetFreeId()));
 
 		// считывание характеристик шара
 		std::ifstream fin(_filepath);

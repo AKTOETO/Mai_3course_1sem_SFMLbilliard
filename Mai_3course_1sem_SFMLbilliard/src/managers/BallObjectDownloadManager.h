@@ -2,14 +2,14 @@
 #define BALLOBJECTDOWNLOADMANAGER_H
 
 #include "SpriteDownloadManger.h"
+#include "BaseObjectDownloadManager.h"
 #include "../objects/Ball.h"
 
 namespace Engine
 {
-	// TODO: создать базовай загрузчик объектов, чтобы ID передавать в конструкторе.
 	// загрузчик игрового объекта Ball
 	class BallObjectDownloadManager :
-		public IDownloadManager<Ball>
+		public BaseObjectDownloadManager<Ball>
 	{
 	private:
 		// загрузчик спрайтов
@@ -17,7 +17,7 @@ namespace Engine
 
 	public:
 		BallObjectDownloadManager(std::shared_ptr<Engine::Context> _cntxt) :
-			IDownloadManager(_cntxt),
+			BaseObjectDownloadManager(_cntxt),
 			m_sprite_download(std::make_unique<SpriteDownloadManager>(_cntxt))
 		{}
 

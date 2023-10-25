@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="src\datatypes\CustomSprite.h" />
     <ClInclude Include="src\logger\Logger.h" />
     <ClInclude Include="src\managers\BallObjectDownloadManager.h" />
+    <ClInclude Include="src\managers\BaseObjectDownloadManager.h" />
     <ClInclude Include="src\managers\IDownloadManager.h" />
     <ClInclude Include="src\managers\BaseManager.h" />
     <ClInclude Include="src\managers\SpriteDownloadManger.h" />
@@ -160,6 +162,7 @@
     <ClInclude Include="src\objects\MoveableObject.h" />
     <ClInclude Include="src\objects\OneSpriteMoveableObject.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\world\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

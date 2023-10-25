@@ -23,6 +23,7 @@ namespace Engine
 
 		// масса объекта
 		float m_mass;
+
 	public:
 		MoveableObject(
 			int id, Vector2f pos = { 0.f,0.f },
@@ -44,6 +45,9 @@ namespace Engine
 		Vector2f GetVel() const { return m_vel; }
 		Vector2f GetAcc() const { return m_acc; }
 		float GetMass() const { return m_mass; }
+
+		// движение объекта
+		void Move(Vector2f dist) { m_pos += dist; }
 	};
 }
 

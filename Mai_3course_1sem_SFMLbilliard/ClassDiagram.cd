@@ -49,24 +49,45 @@
       <FileName>src\managers\TextureDownloadManager.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Engine::Ball">
+    <Position X="9.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAiAAIA=</HashCode>
+      <FileName>src\objects\Ball.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::MoveableObject" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAIAAYAkAAAAAAAg0AAgAAAQEAAEAAAIAAAI=</HashCode>
+      <FileName>src\objects\MoveableObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::OneSpriteMoveableObject" Collapsed="true">
+    <Position X="9.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAABEAAAAAIAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\objects\OneSpriteMoveableObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::BaseObjectDownloadManager&lt;Ty&gt;" Collapsed="true">
+    <Position X="3.25" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\managers\BaseObjectDownloadManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Engine::BallObjectDownloadManager" Collapsed="true">
-    <Position X="3.5" Y="3.25" Width="1.5" />
+    <Position X="3.25" Y="4.75" Width="2" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAA=</HashCode>
       <FileName>src\managers\BallObjectDownloadManager.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="MoveableObject" Collapsed="true">
-    <Position X="1" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAUAAgAAAAAAAEAAAAAAgA=</HashCode>
-      <FileName>src\objects\MoveableObject.h</FileName>
-    </TypeIdentifier>
-  </Struct>
   <Struct Name="Engine::Context" Collapsed="true">
     <Position X="8.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AABAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
       <FileName>src\Context.h</FileName>
     </TypeIdentifier>
   </Struct>
@@ -75,20 +96,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAQAAAgAAAAAAEAAAAAAgACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\datatypes\CustomSprite.h</FileName>
-    </TypeIdentifier>
-  </Struct>
-  <Struct Name="Engine::Ball" Collapsed="true">
-    <Position X="1" Y="7.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>src\objects\Ball.h</FileName>
-    </TypeIdentifier>
-  </Struct>
-  <Struct Name="Engine::OneSpriteMoveableObject" Collapsed="true">
-    <Position X="1" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>src\objects\OneSpriteMoveableObject.h</FileName>
     </TypeIdentifier>
   </Struct>
   <Font Name="Segoe UI" Size="9" />
