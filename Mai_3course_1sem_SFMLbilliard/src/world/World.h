@@ -2,6 +2,7 @@
 #define WORLD_H
 
 #include "../managers/BallObjectDownloadManager.h"
+#include "../physics/BallsCollision.h"
 
 // TODO: Должен быть класс загрузчика мира, который будет наследоваться от 
 
@@ -11,7 +12,8 @@
 // менеджер контроллируемых объектов, ... (мб ничего больше и не будет :( )
 namespace Engine
 {
-	class World
+	class World//:
+		//public BallsCollision
 	{
 	protected:
 		// массив шаров на игровом столе
@@ -22,8 +24,8 @@ namespace Engine
 		// кий (управляемый игроком)
 
 	public:
-		World(std::shared_ptr<Engine::Context> _cntxt)
-		{};
+		World(std::shared_ptr<Engine::Context> _cntxt);
+		
 	};
 }
 

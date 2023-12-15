@@ -7,21 +7,19 @@ namespace Engine
 {
 	// стрктура шара
 	class Ball :
-		public OneSpriteMoveableObject
+		public OneSpriteDynamicObject
 	{
 	protected:
 		// радиус шара
 		float m_radius;
 
 	public:
-		Ball(int id, float radius = 0.f):
-			OneSpriteMoveableObject(id), m_radius(radius)
-		{}
+		Ball(int id, float radius = 0.f);
 
 		// get/set методы
-		float GetRadius() const { return m_radius; }
+		void SetRadius(float radius);
 
-		void SetRadius(float radius) { m_radius = radius; }
+		float GetRadius() const;
 	};
 }
 

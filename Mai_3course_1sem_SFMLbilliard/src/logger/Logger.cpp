@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "Logger.h"
+﻿#include "Logger.h"
 
 std::string Logger::Wrapper(
 	const std::string& data,

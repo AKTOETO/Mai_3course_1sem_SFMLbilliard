@@ -1,7 +1,7 @@
-﻿#ifndef CONTEXT_H
+﻿#include "pch.h"
+#ifndef CONTEXT_H
 #define CONTEXT_H
 
-#include "pch.h"
 #include "logger/Logger.h"
 
 namespace Engine
@@ -9,6 +9,9 @@ namespace Engine
 	// контекст программы
 	struct Context
 	{
+		// размеры окна
+		Vector2i m_win_size;
+
 		// логгер
 		std::unique_ptr<Logger> m_log;
 
@@ -23,7 +26,7 @@ namespace Engine
 		// конструктор
 		Context() :
 			m_log(std::make_unique<Logger>(Logger::LogMode::ConsoleAndFile)),
-			free_id(0)
+			free_id(0), m_win_size({800,600})
 		{}
 	};
 }

@@ -1,4 +1,5 @@
-﻿#ifndef BALLOBJECTDOWNLOADMANAGER_H
+﻿#include "../pch.h"
+#ifndef BALLOBJECTDOWNLOADMANAGER_H
 #define BALLOBJECTDOWNLOADMANAGER_H
 
 #include "SpriteDownloadManger.h"
@@ -23,7 +24,7 @@ namespace Engine
 
 		// загрузка объекта Ball
 		std::shared_ptr<Ball> Download(
-			const std::string& _filepath
+			const std::string& _filepath = "assets/gameObjects/OneSpriteMoveableObject/ball.txt"
 		) override;
 
 	};

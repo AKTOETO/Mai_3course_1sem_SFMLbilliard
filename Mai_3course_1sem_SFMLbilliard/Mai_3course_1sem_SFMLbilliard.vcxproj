@@ -105,7 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -138,10 +138,17 @@
     <ClCompile Include="src\managers\BallObjectDownloadManager.cpp" />
     <ClCompile Include="src\managers\SpriteDownloadManger.cpp" />
     <ClCompile Include="src\managers\TextureDownloadManager.cpp" />
+    <ClCompile Include="src\objects\Ball.cpp" />
+    <ClCompile Include="src\objects\OneSpriteMoveableObject.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\physics\BallPhysManager.cpp" />
+    <ClCompile Include="src\physics\DynamicObject.cpp" />
+    <ClCompile Include="src\physics\DynamicObjectManager.cpp" />
+    <ClCompile Include="src\physics\DynamicObjectManager.h" />
+    <ClCompile Include="src\world\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
@@ -159,9 +166,10 @@
     <ClInclude Include="src\managers\SpriteDownloadManger.h" />
     <ClInclude Include="src\managers\TextureDownloadManager.h" />
     <ClInclude Include="src\objects\Ball.h" />
-    <ClInclude Include="src\objects\MoveableObject.h" />
     <ClInclude Include="src\objects\OneSpriteMoveableObject.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\physics\BallPhysManager.h" />
+    <ClInclude Include="src\physics\DynamicObject.h" />
     <ClInclude Include="src\world\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

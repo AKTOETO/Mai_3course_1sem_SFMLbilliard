@@ -1,5 +1,5 @@
 texture assets/textures/balls/Sprite-0001.png
-textureRect 0 0 64 64
+textureRect 1 1 63 63
 position 100.0 100.0
 rotation 0.0
 scale 1.0 1.0

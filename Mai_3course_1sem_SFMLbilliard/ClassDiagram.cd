@@ -49,24 +49,17 @@
       <FileName>src\managers\TextureDownloadManager.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Engine::Ball">
-    <Position X="9.25" Y="7.5" Width="1.5" />
+  <Class Name="Engine::Ball" Collapsed="true">
+    <Position X="7.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAiAAIA=</HashCode>
       <FileName>src\objects\Ball.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Engine::MoveableObject" Collapsed="true">
-    <Position X="9.25" Y="4.75" Width="1.5" />
+  <Class Name="Engine::OneSpriteDynamicObject" Collapsed="true">
+    <Position X="7.5" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAIAAYAkAAAAAAAg0AAgAAAQEAAEAAAIAAAI=</HashCode>
-      <FileName>src\objects\MoveableObject.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Engine::OneSpriteMoveableObject" Collapsed="true">
-    <Position X="9.25" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAgAABEAAAAAIAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIAAAAAAAIABEAAAAAIAAAAgAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>src\objects\OneSpriteMoveableObject.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -84,10 +77,38 @@
       <FileName>src\managers\BallObjectDownloadManager.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Engine::World" Collapsed="true">
+    <Position X="12.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\world\World.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::DynamicObjectManager" Collapsed="true">
+    <Position X="3.25" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAEAAAAAAAgAAIAAEAAAgAiDAAAAAIBAAE=</HashCode>
+      <FileName>src\physics\DynamicObjectManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::BallPhysManager" Collapsed="true">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAABAABAAIAAAA=</HashCode>
+      <FileName>src\physics\BallPhysManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::DynamicObject" Collapsed="true">
+    <Position X="7.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AISAAAAAAKAABAgBAAAAAAgEAAAAAAQBABAAEgAABAA=</HashCode>
+      <FileName>src\physics\DynamicObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="Engine::Context" Collapsed="true">
     <Position X="8.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AABAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAA=</HashCode>
       <FileName>src\Context.h</FileName>
     </TypeIdentifier>
   </Struct>

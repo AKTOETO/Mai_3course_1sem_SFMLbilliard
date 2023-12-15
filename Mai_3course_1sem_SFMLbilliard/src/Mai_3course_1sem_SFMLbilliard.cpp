@@ -223,7 +223,21 @@ int main()
 	//auto sp = dwn.Download("assets/sprites/ball.txt");
 
 	Engine::BallObjectDownloadManager dwn(cnt);
-	auto ball = dwn.Download("assets/gameObjects/OneSpriteMoveableObject/ball.txt");
+	
+	// список шаров
+	std::shared_ptr<std::vector<Engine::Ball>> balls = 
+		std::make_shared<std::vector<Engine::Ball>>(
+			std::vector<Engine::Ball>{ *dwn.Download(), *dwn.Download(), *dwn.Download() }
+	);
+
+	(*balls)[0].SetPos({ 10,10 });
+	(*balls)[1].SetPos({ 100,10 });
+
+	(*balls)[0].ApplyForce({ 0.01,0 });
+
+	//(*balls)[0].SetVel({ 0.01,0 });
+	//(*balls)[1].SetVel({ -0.01,0 });
+
 
 	while (window.isOpen())
 	{
@@ -265,7 +279,10 @@ int main()
 		window.clear(Color::Cyan);
 
 
-		window.draw(*ball);
+		// Отрисовка шаров
+		for (Engine::Ball& ball : *balls)window.draw(ball);
+
+		//window.draw(*ball);
 
 		//for (Cat& cat : cats)window.draw(cat);
 

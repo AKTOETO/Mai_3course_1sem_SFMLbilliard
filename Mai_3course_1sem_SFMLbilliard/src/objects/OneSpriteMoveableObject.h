@@ -1,32 +1,32 @@
 ﻿#ifndef ONESPRITEMOVEABLEOBJECT_H
 #define ONESPRITEMOVEABLEOBJECT_H
 
-#include "MoveableObject.h"
+#include "../physics/DynamicObject.h"
 #include "../datatypes/CustomSprite.h"
 
 namespace Engine
 {
-	class OneSpriteMoveableObject :
-		public MoveableObject,
+	class OneSpriteDynamicObject :
+		public DynamicObject,
 		public Drawable
 	{
 	protected:
 		// картинка, отображаемая на экране
 		std::shared_ptr<CustomSprite> m_sprite;
+
 	public:
-		OneSpriteMoveableObject(int id, std::shared_ptr<CustomSprite> sprite = nullptr) :
-			MoveableObject(id), m_sprite(sprite)
-		{}
+		OneSpriteDynamicObject(int id, std::shared_ptr<CustomSprite> sprite = nullptr);
 
 		// get/set методы
-		void SetSprite(std::shared_ptr<CustomSprite> sprite) { m_sprite = sprite; }
+		void SetSprite(std::shared_ptr<CustomSprite> sprite);
+		virtual void SetPos(Vector2f pos) override;
+		virtual void Move(Vector2f dist) override;
 
-		std::shared_ptr<CustomSprite> GetSprite() const { return m_sprite; }
+		std::shared_ptr<CustomSprite> GetSprite() const;
+
 	private:
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
-		{
-			target.draw(*m_sprite->m_sprite, states);
-		}
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 	};
 }
 

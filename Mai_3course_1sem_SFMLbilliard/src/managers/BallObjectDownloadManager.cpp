@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "BallObjectDownloadManager.h"
+﻿#include "BallObjectDownloadManager.h"
 
 namespace Engine
 {

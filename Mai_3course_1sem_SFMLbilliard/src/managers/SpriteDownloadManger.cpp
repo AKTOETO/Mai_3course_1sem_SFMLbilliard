@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "SpriteDownloadManger.h"
+﻿#include "SpriteDownloadManger.h"
 
 namespace Engine
 {

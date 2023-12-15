@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "TextureDownloadManager.h"
+﻿#include "TextureDownloadManager.h"
 
 namespace Engine
 {
