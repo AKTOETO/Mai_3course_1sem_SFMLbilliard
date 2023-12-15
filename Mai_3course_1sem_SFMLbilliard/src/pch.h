@@ -1,5 +1,7 @@
-#pragma once
+﻿#pragma once
 
+#include <list>
+#include <functional>
 #include <iostream>
 #include <source_location>
 #include <fstream>
