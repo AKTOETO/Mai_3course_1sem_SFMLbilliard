@@ -905,7 +905,7 @@ bool PhysicHandler::LogicHandling()
 		// проверка на выход за экран
 
 		// выход за левую границу
-		if (ball->getPosition().x < 0)
+		if (ball->getPosition().x - ball->getRadius() < 0)
 		{
 			ball->setPosition(Vector2f(ball->getRadius() + 1, ball->getPosition().y));
 			ball->SetVelocity(Vector2f(-ball->GetVelocity().x, ball->GetVelocity().y));
@@ -917,7 +917,7 @@ bool PhysicHandler::LogicHandling()
 			ball->SetVelocity(Vector2f(-ball->GetVelocity().x, ball->GetVelocity().y));
 		}
 		// выход за верхнюю границу
-		else if (ball->getPosition().y < 0)
+		else if (ball->getPosition().y - ball->getRadius() < 0)
 		{
 			ball->setPosition(Vector2f(ball->getPosition().x, ball->getRadius() + 1));
 			ball->SetVelocity(Vector2f(ball->GetVelocity().x, -ball->GetVelocity().y));
