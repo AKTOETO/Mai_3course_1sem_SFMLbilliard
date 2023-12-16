@@ -28,6 +28,12 @@ Vector2f NormalizeVector(Vector2f _vect)
 class Ball : public CircleShape
 {
 protected:
+	// радиус
+	float m_radius;
+
+	// толщина обводки внешней
+	float m_outline_thickness;
+
 	// скорость
 	Vector2f m_vel;
 
@@ -50,16 +56,58 @@ public:
 	void SetVelocity(const Vector2f& vel) { m_vel = vel; }
 	void SetAcceleration(const Vector2f& acc) { m_acc = acc; }
 
+	// проверка пересечения с другим шаром
+	bool IsIntersected(const Ball& ball);
+
+	// нахождение расстояния между центрами двух шаров
+	float CenterDist(const Ball& ball);
+
+	// нахождение расстояния по оси x
+	float GetXDist(const Ball& ball);
+
+	// нахождение расстояния по оси y
+	float GetYDist(const Ball& ball);
+
+	// полчение радиуса
+	float getRadius() const { return m_radius; }
 };
 
 Ball::Ball(int id, float radius, Vector2f pos,
 	Vector2f vel, Vector2f acc)
-	:CircleShape(radius), m_id(id), m_vel(vel), m_acc(acc)
+	:CircleShape(radius), m_id(id), m_vel(vel), m_acc(acc),
+	m_outline_thickness(5)
 {
+	m_radius = (radius + m_outline_thickness);
 	setPosition(pos);
 	setOutlineColor(Color::Black);
-	setOutlineThickness(5);
+	setOutlineThickness(m_outline_thickness);
 	setOrigin({ radius, radius });
+}
+
+bool Ball::IsIntersected(const Ball& ball)
+{
+	// расстоние между центрами
+	float center_dist = CenterDist(ball);
+
+	// если расстояние между центрами равно сумме радиусов,
+	// то шары пересеклись
+	return center_dist <= this->getRadius() + ball.getRadius();
+}
+
+float Ball::CenterDist(const Ball& ball)
+{
+	// Для начала следует найти расстояние между центром шаров
+	return	sqrtf(powf(GetXDist(ball), 2) + powf(GetYDist(ball), 2));
+}
+
+float Ball::GetXDist(const Ball& ball)
+{
+	return this->getGlobalBounds().left - ball.getGlobalBounds().left;
+}
+
+float Ball::GetYDist(const Ball& ball)
+{
+	return this->getGlobalBounds().top - ball.getGlobalBounds().top;
 }
 
 // Синий шар
@@ -91,20 +139,19 @@ public:
 	// добавить шар
 	void AddBall(const std::shared_ptr<Ball>& ball)
 	{
-		// TODO: проверка на возможность спавна шара в текущих координатах
-		// (нет ли пересечения с другими шарами)
-
 		// перебираем все шары и смотрим, есть ли пересечение
 		// с тем, что мы хотим добавить
 		for (auto& mball : m_balls)
 		{
 			// если шар пересекается с каким-либо уже существующим,
 			// то просто выходим из функции, не добваляя новый шар
-			if (ball->getGlobalBounds().intersects(mball->getGlobalBounds()))
+			if (ball->IsIntersected(*mball))
 				return;
-		}		
+		}
+
+		// если же шар не пересекся с другими, добавляем его в список шаров
 		m_balls.emplace_back(ball);
-		lg.Info("ball spawned at:" + 
+		lg.Info("ball spawned at:" +
 			std::to_string(int(ball->getGlobalBounds().left)) + " " +
 			std::to_string(int(ball->getGlobalBounds().top))
 		);
@@ -278,7 +325,10 @@ public:
 struct ProgContext
 {
 	// время рендера последнего кадра
-	float dT;
+	float m_dT;
+
+	// выбранный шар для перемещения с помощью колесика
+	std::list<std::shared_ptr<Ball>>::const_iterator m_following_ball;
 
 	// указатель на окно
 	std::unique_ptr<RenderWindow> m_window;
@@ -288,7 +338,7 @@ struct ProgContext
 
 	// конструктор
 	ProgContext()
-		:dT(.0)
+		:m_dT(.0)
 	{
 		// настройки окна
 		sf::ContextSettings settings;
@@ -308,6 +358,9 @@ struct ProgContext
 
 		// создание массива с шарами
 		m_balls = std::make_unique<BallsVector>();
+
+		// определение шара нулевым значением
+		m_following_ball = m_balls->GetBalls().end();
 	}
 };
 
@@ -339,9 +392,8 @@ class MouseHandler
 public:
 	MouseHandler(std::shared_ptr<ProgContext> context)
 		:ABCHandler(context),
-		m_following_ball(m_context->m_balls->GetBalls().end()),
 		m_moving_ball(m_context->m_balls->GetBalls().end()),
-		m_shooting_vec({.0,.0})
+		m_shooting_vec({ .0,.0 })
 	{}
 
 	// обработка событий
@@ -353,9 +405,6 @@ public:
 protected:
 	// позиция мыши
 	Vector2f m_mouse_pos;
-
-	// выбранный шар для перемещения с помощью колесика
-	std::list<std::shared_ptr<Ball>>::const_iterator m_following_ball;
 
 	// выбранный шар для перемещения с удара
 	std::list<std::shared_ptr<Ball>>::const_iterator m_moving_ball;
@@ -432,7 +481,7 @@ bool MouseHandler::EventHandling(const Event& evnt)
 		case Mouse::Button::Middle:
 
 			// если шар не выбран
-			if (m_following_ball == m_context->m_balls->GetBalls().end())
+			if (m_context->m_following_ball == m_context->m_balls->GetBalls().end())
 			{
 				// перебираем все шары, и смотрим, 
 				ball = m_context->m_balls->GetBalls().begin();
@@ -443,7 +492,7 @@ bool MouseHandler::EventHandling(const Event& evnt)
 					{
 						lg.Info("ball captrued for moving");
 						// захватываю шар
-						m_following_ball = ball;
+						m_context->m_following_ball = ball;
 						break;
 					}
 					else ++ball;
@@ -466,11 +515,11 @@ bool MouseHandler::EventHandling(const Event& evnt)
 		case Mouse::Button::Middle:
 
 			// если шар был выбран
-			if (m_following_ball != m_context->m_balls->GetBalls().end())
+			if (m_context->m_following_ball != m_context->m_balls->GetBalls().end())
 			{
 				lg.Info("release captured ball");
 				// говорим, что шар больше не выбран
-				m_following_ball = m_context->m_balls->GetBalls().end();
+				m_context->m_following_ball = m_context->m_balls->GetBalls().end();
 			}
 
 			break;
@@ -509,10 +558,10 @@ bool MouseHandler::EventHandling(const Event& evnt)
 bool MouseHandler::LogicHandling()
 {
 	// если шар был захвачен
-	if (m_following_ball != m_context->m_balls->GetBalls().end())
+	if (m_context->m_following_ball != m_context->m_balls->GetBalls().end())
 	{
 		// переносим шар, который был захвачен
-		(*m_following_ball)->setPosition(GetMousePos());
+		(*m_context->m_following_ball)->setPosition(GetMousePos());
 	}
 
 	return false;
@@ -625,8 +674,8 @@ bool WindowHandler::LogicHandling()
 {
 	// вычисление времени прошежшего с последнего кадра
 	m_cur_time = m_clock.getElapsedTime();
-	m_context->dT = m_cur_time.asMicroseconds();
-	m_context->dT /= 800;
+	m_context->m_dT = m_cur_time.asMicroseconds();
+	m_context->m_dT /= 800;
 
 	// вычисление количества кадров в секунду
 	m_fps = 1.f / (m_cur_time.asSeconds() - m_last_time.asSeconds());
@@ -638,17 +687,95 @@ bool WindowHandler::LogicHandling()
 	return false;
 }
 
+// обработчик физики
+class PhysicHandler
+	:public ABCHandler
+{
+public:
+	PhysicHandler(std::shared_ptr<ProgContext> context)
+		:ABCHandler(context)
+	{}
+
+	// обработка событий
+	virtual bool EventHandling(const Event&) override;
+
+	// обработка логики
+	virtual bool LogicHandling() override;
+
+protected:
+};
+
+bool PhysicHandler::EventHandling(const Event&)
+{
+	return false;
+}
+
+bool PhysicHandler::LogicHandling()
+{
+	// проверка на столкновение шаров друг с другом
+
+	// итератор для перебора первого шара
+	std::list<std::shared_ptr<Ball>>::const_iterator source = m_context->m_balls->GetBalls().begin();
 
 
+	// проходимся по всем шарам и пытаемся пересечь их друг с другом
+	while (source != m_context->m_balls->GetBalls().end())
+	{
+		// итератор для перебора второго шара
+		std::list<std::shared_ptr<Ball>>::const_iterator target = m_context->m_balls->GetBalls().begin();
+
+		// проходимся по всем шарам и пытаемся пересечь их друг с другом
+		while (target != m_context->m_balls->GetBalls().end())
+		{
+			// если это разные шары
+			if (source != target)
+			{
+				// проверяем их на пересечение
+				if ((*source)->IsIntersected(**target))
+				{
+					// статическая коллизия
+					// мы вытесняем один шар из другого
+
+					// сохраним расстояние между центрами шаров по разным осям
+					float x_dist = (*source)->GetXDist(**target);
+					float y_dist = (*source)->GetYDist(**target);
+
+					// Для начала следует найти расстояние между центром шаров
+					float center_dist = (*source)->CenterDist(**target);
+
+					// расстояние, на которое они пересекаются
+					// на это расстояние мы сдвинем каждый шар, поэтому делим его на 2
+					float overlap_dist = 0.5 * (center_dist - (*source)->getRadius() - (*target)->getRadius());
+
+					// сдвигаем шары друг относительно друга
+
+					// если шаром не управляют мышкой, то двигаем его
+					if (source != m_context->m_following_ball)
+						(*source)->move(Vector2f(
+							-overlap_dist * (x_dist) / center_dist,
+							-overlap_dist * (y_dist) / center_dist
+						));
+
+					// если шаром не управляют мышкой, то двигаем его
+					if (target != m_context->m_following_ball)
+						(*target)->move(Vector2f(
+							overlap_dist * (x_dist) / center_dist,
+							overlap_dist * (y_dist) / center_dist
+						));
+
+				}
+			}
+			target++;
+		}
+		source++;
+	}
+
+	return false;
+}
 
 // главная функция
 int main()
 {
-	// TODO:[+] шары на нажатие лкм по пустой области появляются,
-	//		[] на нажатие и зажатие лкм по шару можно его бросить,
-	//		[+] на нажатие пкм по шару можно его удалить
-	//		[+] на нажатие колесика мышки шар можно перенести
-
 	lg.Info("Start Program");
 
 	srand(time(NULL));
@@ -664,6 +791,9 @@ int main()
 
 	// управляющий окном
 	WindowHandler h_window(cnxt);
+
+	// обработчик физики
+	PhysicHandler h_phys(cnxt);
 
 	// цикл программы
 	while (cnxt->m_window->isOpen())
@@ -682,6 +812,10 @@ int main()
 
 			// обработка событий окна
 			h_window.EventHandling(evnt);
+
+			// обработка событий физики 
+			// (на самом деле таких нет. Добавил просто для красоты)
+			h_phys.EventHandling(evnt);
 		}
 
 		// обработка логики	мыши
@@ -693,12 +827,13 @@ int main()
 		// обработка логики	окна
 		h_window.LogicHandling();
 
-		// проверка столкновений с границами
+		// обработка логики	физики
+		h_phys.LogicHandling();
+
 
 		// отрисовка всего
 		cnxt->m_window->clear(Color::Cyan);
 
-		//lg.Info("number of balls: " + std::to_string())
 		cnxt->m_window->draw(*cnxt->m_balls);
 
 		cnxt->m_window->display();
@@ -706,3 +841,4 @@ int main()
 
 	return 0;
 }
+

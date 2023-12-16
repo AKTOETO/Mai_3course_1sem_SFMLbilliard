@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <memory>
+#include <cmath>
 #include <map>
 
 #include <SFML/Graphics.hpp>
