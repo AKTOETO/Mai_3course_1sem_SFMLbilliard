@@ -365,7 +365,6 @@ bool MouseHandler::EventHandling(const Event& evnt)
 				// есть ли пересечение мыши с каким-нибудь
 				if ((*ball)->getGlobalBounds().contains(m_mouse_pos))
 				{
-					lg.Info("shoot ball");
 					// выбираем шар котрым выстрелим
 					m_moving_ball = ball;
 					break;
@@ -394,7 +393,6 @@ bool MouseHandler::EventHandling(const Event& evnt)
 					// есть ли пересечение мыши с каким-нибудь
 					if ((*ball)->getGlobalBounds().contains(m_mouse_pos))
 					{
-						lg.Info("delete ball");
 						// удаляем текущий шар
 						m_context->m_balls->DeleteBall(ball++);
 					}
@@ -418,7 +416,6 @@ bool MouseHandler::EventHandling(const Event& evnt)
 					// есть ли пересечение мыши с каким-нибудь
 					if ((*ball)->getGlobalBounds().contains(m_mouse_pos))
 					{
-						lg.Info("ball captrued for moving");
 						// захватываю шар
 						m_context->m_following_ball = ball;
 						break;
@@ -441,7 +438,6 @@ bool MouseHandler::EventHandling(const Event& evnt)
 			// если шар был выбран
 			if (m_context->m_following_ball != m_context->m_balls->GetBalls().end())
 			{
-				lg.Info("release captured ball");
 				// говорим, что шар больше не выбран
 				m_context->m_following_ball = m_context->m_balls->GetBalls().end();
 			}
@@ -459,7 +455,6 @@ bool MouseHandler::EventHandling(const Event& evnt)
 
 				// вычисление вектора удара
 				m_shooting_vec = -(m_mouse_pos - (*m_moving_ball)->getPosition());
-				lg.Info("shoot the ball by: " + std::to_string(m_shooting_vec.x) + " " + std::to_string(m_shooting_vec.y));
 
 				// установка скорости для шара
 				(*m_moving_ball)->SetVelocity(4.f * m_shooting_vec);
@@ -930,8 +925,6 @@ bool GodModHandler::LogicHandling()
 		m_text.clear();
 		m_vectors.clear();
 
-		lg.Info("have balls");
-
 		// отрисовка основных характеристик каждого шара
 		// если список шаров не пуст
 		if (m_context->m_balls->GetBalls().size())
@@ -1034,8 +1027,6 @@ int main()
 		// событие
 		Event evnt;
 
-		lg.Info("event");
-
 		// обработка событий
 		while (cnxt->m_window->pollEvent(evnt))
 		{
@@ -1044,16 +1035,12 @@ int main()
 				el->EventHandling(evnt);
 		}
 
-		lg.Info("logic");
-
 		// обработка логики
 		for (auto& el : handlers)
 			el->LogicHandling();
 
 		// отрисовка всего
 		cnxt->m_window->clear(Color::Cyan);
-
-		lg.Info("drawing");
 
 		// отрисовка
 		for (auto& el : handlers)
