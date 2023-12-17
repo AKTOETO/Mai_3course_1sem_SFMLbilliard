@@ -49,11 +49,8 @@ protected:
 	// масса
 	float m_mass;
 
-	// номер шара
-	int m_id;
-
 public:
-	Ball(int id, float radius = 10, Vector2f pos = { 0,0 },
+	Ball(float radius = 10, Vector2f pos = { 0,0 },
 		Vector2f vel = { 0,0 }, Vector2f acc = { 0,0 });
 	~Ball() {};
 
@@ -61,7 +58,6 @@ public:
 	const Vector2f& GetVelocity() const { return m_vel; }
 	const float& GetVelocityScal() const { return sqrt(m_vel.x * m_vel.x + m_vel.y * m_vel.y); }
 	const Vector2f& GetAcceleration() const { return m_acc; }
-	const int& GetId() const { return m_id; }
 	const float& GetMass() const { return m_mass; }
 
 	void SetVelocity(const Vector2f& vel)
@@ -90,20 +86,23 @@ public:
 	float getRadius() const { return m_radius; }
 };
 
-Ball::Ball(int id, float radius, Vector2f pos,
+Ball::Ball(float radius, Vector2f pos,
 	Vector2f vel, Vector2f acc)
-	:CircleShape(radius), m_id(id), m_vel(vel), m_acc(acc),
+	:CircleShape(radius), m_vel(vel), m_acc(acc),
 	m_outline_thickness(5)
 {
 	// радиус учитывает толщину обводки
 	m_radius = (radius + m_outline_thickness);
 	// масса зависит от радиуса
-	m_mass = m_radius * 2.f;
+	m_mass = m_radius * 5.f;
 
 	setPosition(pos);
 	setOutlineColor(Color::Black);
 	setOutlineThickness(m_outline_thickness);
 	setOrigin({ radius, radius });
+	
+	lg.Info("center in: " + std::to_string(m_radius / 2) + " " + std::to_string(m_radius / 2) +
+		" radius: " + std::to_string(m_radius));
 }
 
 bool Ball::IsIntersected(const Ball& ball)
@@ -113,37 +112,55 @@ bool Ball::IsIntersected(const Ball& ball)
 
 	// если расстояние между центрами равно сумме радиусов,
 	// то шары пересеклись
-	return center_dist <= this->getRadius() + ball.getRadius();
+	return fabs(center_dist) <= this->getRadius() + ball.getRadius();
 }
 
 float Ball::GetCenterDist(const Ball& ball)
 {
 	// Для начала следует найти расстояние между центром шаров
-	return	sqrtf(powf(GetXDist(ball), 2) + powf(GetYDist(ball), 2));
+	return sqrtf(powf(GetXDist(ball), 2) + powf(GetYDist(ball), 2));
 }
 
 float Ball::GetXDist(const Ball& ball)
 {
-	return this->getGlobalBounds().left - ball.getGlobalBounds().left;
+	return abs(this->getPosition().x// + this->getRadius()
+		- ball.getPosition().x //+ ball.getRadius()
+	);
 }
 
 float Ball::GetYDist(const Ball& ball)
 {
-	return this->getGlobalBounds().top - ball.getGlobalBounds().top;
+	return abs(this->getPosition().y// + this->getRadius()
+		- ball.getPosition().y //+ ball.getRadius()
+	);
 }
 
 // Синий шар
 class BlueBall : public Ball
 {
 public:
-	BlueBall(int id, Vector2f pos = { 50,50 });
+	BlueBall(Vector2f pos = { 50,50 });
 };
 
-BlueBall::BlueBall(int id, Vector2f pos)
-	:Ball(id, 10, pos)
+BlueBall::BlueBall(Vector2f pos)
+	:Ball(10, pos)
 {
 	setFillColor(Color::Blue);
 }
+
+// Красный шар
+class RedBall : public Ball
+{
+public:
+	RedBall(Vector2f pos = { 50,50 });
+};
+
+RedBall::RedBall( Vector2f pos)
+	:Ball(30, pos)
+{
+	setFillColor(Color::Red);
+}
+
 
 // Список шаров
 class BallsVector : public Drawable
@@ -155,7 +172,7 @@ public:
 	// добавить синий шар в случайное место
 	void AddBlueBallAtRandPos()
 	{
-		m_balls.push_back(std::make_shared<BlueBall>(0, GetRandWindowPoint()));
+		m_balls.push_back(std::make_shared<RedBall>(GetRandWindowPoint()));
 	}
 
 	// добавить шар
@@ -197,151 +214,6 @@ public:
 				target.draw(*ball, states);
 	}
 };
-
-//// класс кнопки (trigger)
-//template<class Ty>
-//class Button
-//{
-//public:
-//
-//	// указатель на функцию
-//	using pfunc = std::function<void()>;
-//
-//	// перечисление состояний
-//	enum class State
-//	{
-//		NONE = 0,
-//		PRESSED,	// нажата
-//		RELEASED,	// отпущена
-//		HOLDED		// нажата и не отпущена
-//	};
-//
-//	// конструктор
-//	Button(Ty key)
-//		:m_state(State::NONE), m_key_code(key),
-//		m_pressed_func(nullptr), m_released_func(nullptr),
-//		m_holded_func(nullptr)
-//	{}
-//
-//	// обработка состояния кнопки на клавиатуре
-//	State Logic();
-//
-//	// Установка новой кнопки
-//	void SetKeyCode(Ty key) { m_key_code = key; }
-//
-//	// Получение текущей кнопки
-//	Ty GetKeyCode() const { return m_key_code; }
-//
-//	// Установка функций обработки состояний
-//	// нажатие
-//	void SetPressedFunc(pfunc func) { m_pressed_func = func; }
-//
-//	// удержание
-//	void SetHoldedFunc(pfunc func) { m_holded_func = func; }
-//
-//	// отпускание
-//	void SetReleasedFunc(pfunc func) { m_released_func = func; }
-//
-//protected:
-//
-//	// проверка нажатия кнопки
-//	virtual bool IsKeyPressed() = 0;
-//
-//	// текущее состояние кнопки
-//	State m_state;
-//
-//	// клавиша, на которую срабатывает кнопка
-//	Ty m_key_code;
-//
-//	// функция, которая вызывается при нажатии
-//	pfunc m_pressed_func;
-//
-//	// функция, которая вызывается при зажатии
-//	pfunc m_holded_func;
-//
-//	// функция, которая вызывается при отпускании
-//	pfunc m_released_func;
-//};
-//
-//template<class Ty>
-//Button<Ty>::State Button<Ty>::Logic()
-//{
-//	// если кнопка нажата
-//	if (IsKeyPressed()
-//		&& m_state == State::NONE)
-//	{
-//		m_state = State::PRESSED;
-//		//lg.Info("pressed");
-//		if (m_pressed_func)m_pressed_func();
-//	}
-//	// если кнопка зажата
-//	else if (IsKeyPressed() && m_state == State::PRESSED)
-//	{
-//		m_state = State::HOLDED;
-//		//lg.Info("holded");
-//		if (m_holded_func)m_holded_func();
-//	}
-//	// если кнопка отжата
-//	else if (!IsKeyPressed() &&
-//		(
-//			m_state == State::PRESSED ||
-//			m_state == State::HOLDED
-//			))
-//	{
-//		m_state = State::RELEASED;
-//		//lg.Info("released");
-//		if (m_released_func)m_released_func();
-//	}
-//	// если кнопка уже давно отжата
-//	else if (!IsKeyPressed() && m_state == State::RELEASED)
-//	{
-//		//lg.Info("none");
-//		m_state = State::NONE;
-//	}
-//
-//	return m_state;
-//}
-//
-//// Обработка кнопки с клавиатуры
-//class KeyboardButton :
-//	public Button<Keyboard::Key>
-//{
-//public:
-//	KeyboardButton(Keyboard::Key key)
-//		:Button(key)
-//	{}
-//
-//protected:
-//
-//	// проверка нажатия кнопки
-//	virtual bool IsKeyPressed() override;
-//};
-//
-//// Перегрузка функции обработки нажатия кнопки
-//bool KeyboardButton::IsKeyPressed()
-//{
-//	return Keyboard::isKeyPressed(m_key_code);
-//}
-//
-//// Обработка кнопки с мыши
-//class MouseButton
-//	: public Button<Mouse::Button>
-//{
-//public:
-//	MouseButton(Mouse::Button key)
-//		:Button(key)
-//	{}
-//
-//protected:
-//	// проверка нажатия кнопки
-//	virtual bool IsKeyPressed() override;
-//};
-//
-//// Перегрузка функции нажатия клавиши на мыши
-//bool MouseButton::IsKeyPressed()
-//{
-//	return Mouse::isButtonPressed(m_key_code);
-//}
 
 // контекст программы
 struct ProgContext
@@ -481,7 +353,7 @@ bool MouseHandler::EventHandling(const Event& evnt)
 			// то надо заспавнить новый шар
 			if (ball == m_context->m_balls->GetBalls().end())
 			{
-				m_context->m_balls->AddBall(std::make_shared<BlueBall>(0, m_mouse_pos));
+				m_context->m_balls->AddBall(std::make_shared<BlueBall>(m_mouse_pos));
 			}
 			break;
 
@@ -806,7 +678,6 @@ bool PhysicHandler::LogicHandling()
 		source++;
 	}
 
-
 	/////////////////////////////////////
 	//		ДИНАМИЧЕСКАЯ КОЛЛИЗИЯ
 	/////////////////////////////////////
@@ -940,6 +811,9 @@ bool PhysicHandler::LogicHandling()
 // главная функция
 int main()
 {
+	// TODO: [] посмотреть второй урок, в котором реализуется коллизия шаров с плоскостями и сделать тоже самое
+	//		 [+] Коллизия неправильно определяется с объектами разного радиуса (возможно проблема в скорости обработки физики, это тоже в уроке втором фиксится)
+
 	lg.Info("Start Program");
 
 	srand(time(NULL));
@@ -947,53 +821,32 @@ int main()
 	// создание контекста приложения
 	std::shared_ptr<ProgContext> cnxt = std::make_shared<ProgContext>();
 
-	// управляющий мышью
-	MouseHandler h_mouse(cnxt);
-
-	// управляющий клавиатурой
-	KeyboardHandler h_keyboard(cnxt);
-
-	// управляющий окном
-	WindowHandler h_window(cnxt);
-
-	// обработчик физики
-	PhysicHandler h_phys(cnxt);
+	// список обработчиков
+	std::list<std::shared_ptr<ABCHandler>> handlers =
+	{
+		std::make_shared<MouseHandler>(cnxt),
+		std::make_shared<KeyboardHandler>(cnxt),
+		std::make_shared<WindowHandler>(cnxt),
+		std::make_shared<PhysicHandler>(cnxt)
+	};
 
 	// цикл программы
 	while (cnxt->m_window->isOpen())
 	{
-
 		// событие
 		Event evnt;
 
 		// обработка событий
 		while (cnxt->m_window->pollEvent(evnt))
 		{
-			// обработка событий мыши
-			h_mouse.EventHandling(evnt);
-
-			// обработка событий клавиатуры
-			h_keyboard.EventHandling(evnt);
-
-			// обработка событий окна
-			h_window.EventHandling(evnt);
-
-			// обработка событий физики 
-			// (на самом деле таких нет. Добавил просто для красоты)
-			h_phys.EventHandling(evnt);
+			// обработка событий
+			for (auto& el : handlers)
+				el->EventHandling(evnt);
 		}
 
-		// обработка логики	окна
-		h_window.LogicHandling();
-
-		// обработка логики	мыши
-		h_mouse.LogicHandling();
-
-		// обработка логики	клавиатуры
-		h_keyboard.LogicHandling();
-
-		// обработка логики	физики
-		h_phys.LogicHandling();
+		// обработка логики
+		for (auto& el : handlers)
+			el->LogicHandling();
 
 		// отрисовка всего
 		cnxt->m_window->clear(Color::Cyan);
