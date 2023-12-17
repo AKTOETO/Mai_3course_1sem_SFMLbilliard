@@ -148,6 +148,9 @@
     <ClInclude Include="src\logger\Logger.h" />
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\Disket-Mono-Regular.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\sfml_graphics.redist.2.6.0\build\native\sfml_graphics.redist.targets" Condition="Exists('..\packages\sfml_graphics.redist.2.6.0\build\native\sfml_graphics.redist.targets')" />

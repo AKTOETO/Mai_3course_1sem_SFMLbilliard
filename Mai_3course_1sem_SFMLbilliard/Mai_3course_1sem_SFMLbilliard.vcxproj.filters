@@ -37,4 +37,7 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\Disket-Mono-Regular.ttf" />
+  </ItemGroup>
 </Project>
