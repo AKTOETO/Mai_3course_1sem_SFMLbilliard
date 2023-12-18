@@ -15,14 +15,32 @@ bool KeyboardHandler::EventHandling(const Event& evnt)
 			m_context->m_window->close();
 			break;
 
-			// добавить шар в случайное место
+			// добавить синий шар в случайное место
 		case Keyboard::Key::A:
 			if (m_context->m_god_mode)
 			{
-				m_context->m_balls->AddBlueBallAtRandPos();
+				m_context->m_balls->AddBall(
+					std::make_shared<BlueBall>(
+						Vector2f(GetWindowRandPoint(*m_context->m_window))
+					)
+				);
 				//lg.Info("Adding random positioned blue ball");
 			}
 			break;
+			
+			// добавить красный шар в случайное место
+		case Keyboard::Key::S:
+			if (m_context->m_god_mode)
+			{
+				m_context->m_balls->AddBall(
+					std::make_shared<RedBall>(
+						Vector2f(GetWindowRandPoint(*m_context->m_window))
+					)
+				);
+				//lg.Info("Adding random positioned blue ball");
+			}
+			break;
+
 
 			// переключение режима бога
 		case Keyboard::Key::F1:

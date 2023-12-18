@@ -10,11 +10,6 @@ protected:
 	std::list<std::shared_ptr<Ball>> m_balls;
 
 public:
-	// добавить синий шар в случайное место
-	void AddBlueBallAtRandPos()
-	{
-		m_balls.push_back(std::make_shared<BlueBall>(Vector2f(GetRandPoint({800,600}))));
-	}
 
 	// добавить шар
 	void AddBall(const std::shared_ptr<Ball>& ball)

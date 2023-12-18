@@ -23,9 +23,9 @@ inline float DistBetweenPoints(const Vector2f& vec, const Vector2f& vec2)
 }
 
 // получение случайной точки на экране
-inline Vector2i GetRandPoint(const Vector2i& down_right_angle)
+inline Vector2i GetWindowRandPoint(sf::RenderWindow& window)
 {
-	return Vector2i(rand() % down_right_angle.x, rand() % down_right_angle.y);
+	return Vector2i(rand() % window.getSize().x, rand() % window.getSize().y);
 }
 
 #endif
