@@ -22,4 +22,10 @@ inline float DistBetweenPoints(const Vector2f& vec, const Vector2f& vec2)
 	return sqrtf(powf(vec.x - vec2.x, 2) + powf(vec.y - vec2.y, 2));
 }
 
+// получение случайной точки на экране
+inline Vector2i GetRandPoint(const Vector2i& down_right_angle)
+{
+	return Vector2i(rand() % down_right_angle.x, rand() % down_right_angle.y);
+}
+
 #endif

@@ -10,11 +10,11 @@ bool WindowHandler::EventHandling(const Event& evnt)
 		break;
 
 	case Event::Resized:
-		//wind_width = evnt.size.width;
-		//wind_height = evnt.size.height;
+		m_context->wind_width = evnt.size.width;
+		m_context->wind_height = evnt.size.height;
 		//lg.Info("Window resized " + std::to_string(wind_width) + " " + std::to_string(wind_height));
-		//FloatRect visib_area(0, 0, wind_width, wind_height);
-		//m_context->m_window->setView(View(visib_area));
+		FloatRect visib_area(0, 0, m_context->wind_width, m_context->wind_height);
+		m_context->m_window->setView(View(visib_area));
 		break;
 	}
 

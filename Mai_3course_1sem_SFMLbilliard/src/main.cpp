@@ -3,24 +3,13 @@
 #include "handlers/IncludeAllHandlers.h"
 using namespace sf;
 
-static int wind_width = 1200;//500;
-static int wind_height = 800;//100;
-
-static Vector2i wind_center(wind_width / 2, wind_height / 2);
-
-// случайная координата на экране
-Vector2f GetRandWindowPoint()
-{
-	return Vector2f(rand() % wind_width, rand() % wind_height);
-}
-
 // логгер
 static Logger lg(Logger::LogMode::ConsoleAndFile);
 
 // главная функция
 int main()
 {
-	// TODO: [] посмотреть второй урок, в котором реализуется коллизия шаров с плоскостями и сделать тоже самое
+	// TODO: [~] посмотреть второй урок, в котором реализуется коллизия шаров с плоскостями и сделать тоже самое
 	//		 [+] Коллизия неправильно определяется с объектами разного радиуса (возможно проблема в скорости обработки физики, это тоже в уроке втором фиксится)
 	//		 [+] Добавить возможность выводить информацию о шарах
 

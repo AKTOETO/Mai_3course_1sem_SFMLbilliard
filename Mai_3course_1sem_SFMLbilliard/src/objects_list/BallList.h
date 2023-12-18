@@ -4,7 +4,7 @@
 #include "../objects/balls/IncludeAllBalls.h"
 
 // Список шаров
-class BallsVector : public Drawable
+class BallList : public Drawable
 {
 protected:
 	std::list<std::shared_ptr<Ball>> m_balls;
@@ -13,7 +13,7 @@ public:
 	// добавить синий шар в случайное место
 	void AddBlueBallAtRandPos()
 	{
-		//m_balls.push_back(std::make_shared<RedBall>(GetRandWindowPoint()));
+		m_balls.push_back(std::make_shared<BlueBall>(Vector2f(GetRandPoint({800,600}))));
 	}
 
 	// добавить шар

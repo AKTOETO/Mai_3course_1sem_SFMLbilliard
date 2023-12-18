@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ABCHandler" Collapsed="true">
+    <Position X="10.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEABAEAAAAAAAAAAAQAAAAAAABAAAAAAA=</HashCode>
+      <FileName>src\handlers\ABCHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GodModHandler" Collapsed="true">
+    <Position X="8.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAEAAAAAAAAAAAAAAAAogABAAAAAAA=</HashCode>
+      <FileName>src\handlers\GodModHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardHandler" Collapsed="true">
+    <Position X="13" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAACAAAAAAAAA=</HashCode>
+      <FileName>src\handlers\KeyboardHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MouseHandler" Collapsed="true">
+    <Position X="15.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAABAAAAAAAEIAAAAAQAAAAAAABAAAEAAA=</HashCode>
+      <FileName>src\handlers\MouseHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhysicHandler" Collapsed="true">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAABAAgAAAAIAAABAAAAAAA=</HashCode>
+      <FileName>src\handlers\PhysicHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WindowHandler" Collapsed="true">
+    <Position X="10.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAgAAAAAEAAAECAAgAAAQAAAAAAABAAAAAAA=</HashCode>
+      <FileName>src\handlers\WindowHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ball" Collapsed="true">
+    <Position X="7.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEkAYIIAAQAAAAAAAAEAAgAAFCBCFEAAQQCAII=</HashCode>
+      <FileName>src\objects\balls\Ball.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlueBall" Collapsed="true">
+    <Position X="8.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>src\objects\balls\BlueBall.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedBall" Collapsed="true">
+    <Position X="6" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\objects\balls\RedBall.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallsVector" Collapsed="true">
+    <Position X="10.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAACIAAAABAAAAAQAAAAAAAAAAQAA=</HashCode>
+      <FileName>src\objects_list\BallList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logger" Collapsed="true">
+    <Position X="12.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQoAAIAEMAAQAAAAAAABAgQAAAQAIAABAAAEACAAA=</HashCode>
+      <FileName>src\logger\Logger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ProgContext" Collapsed="true">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAACAAAAAAAAAgAQAEAAQgABAAAABAAAIA=</HashCode>
+      <FileName>src\ProgContext.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

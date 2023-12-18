@@ -37,7 +37,7 @@ bool PhysicHandler::LogicHandling()
 					ball->SetOldPos(ball->getPosition());
 
 					// симуляция трат энергии путем создания отрицательного ускорения
-					ball->SetAcceleration(-ball->GetVelocity() * 0.1f);
+					ball->SetAcceleration(-ball->GetVelocity() * 0.8f);
 
 					// ДЛЯ КАЖДОГО ШАРА РАСЧИТЫВАЕМ НОВОЕ ПОЛОЖЕНИЕ
 					// расчет скорости с учетем оставшегося времени симуляции
