@@ -141,16 +141,16 @@ float Ball::GetCenterDist(const Ball& ball)
 
 float Ball::GetXDist(const Ball& ball)
 {
-	return abs(this->getPosition().x// + this->getRadius()
+	return (this->getPosition().x// + this->getRadius()
 		- ball.getPosition().x //+ ball.getRadius()
-	);
+		);
 }
 
 float Ball::GetYDist(const Ball& ball)
 {
-	return abs(this->getPosition().y// + this->getRadius()
+	return (this->getPosition().y// + this->getRadius()
 		- ball.getPosition().y //+ ball.getRadius()
-	);
+		);
 }
 
 // Синий шар
@@ -178,7 +178,6 @@ RedBall::RedBall(Vector2f pos)
 {
 	setFillColor(Color::Red);
 }
-
 
 // Список шаров
 class BallsVector : public Drawable
@@ -457,7 +456,7 @@ bool MouseHandler::EventHandling(const Event& evnt)
 				m_shooting_vec = -(m_mouse_pos - (*m_moving_ball)->getPosition());
 
 				// установка скорости для шара
-				(*m_moving_ball)->SetVelocity(4.f * m_shooting_vec);
+				(*m_moving_ball)->SetVelocity(1.f * m_shooting_vec);
 
 				// говорим, что больше нет выбранного шара для выстрела
 				m_moving_ball = m_context->m_balls->GetBalls().end();
@@ -641,8 +640,8 @@ protected:
 };
 
 PhysicHandler::PhysicHandler(std::shared_ptr<ProgContext> context)
-	:ABCHandler(context), m_sim_updates(4), m_sim_elapsed_time(.0),
-	m_max_sim_steps(15)
+	:ABCHandler(context), m_sim_updates(1), m_sim_elapsed_time(.0),
+	m_max_sim_steps(2)
 {}
 
 bool PhysicHandler::LogicHandling()
@@ -654,7 +653,7 @@ bool PhysicHandler::LogicHandling()
 	m_sim_elapsed_time = m_context->m_dT / m_sim_updates;
 
 	// главный цикл симуляции
-	for (int i = 0; i < m_sim_elapsed_time; i++)
+	for (int i = 0; i < m_sim_updates; i++)
 	{
 		// установка времени симуляции для 
 		// каждого мяча на максимально возможное
@@ -666,55 +665,58 @@ bool PhysicHandler::LogicHandling()
 		//	  ОБНОВЛЕНИЕ ПОЛОЖЕНИЯ ШАРОВ
 		/////////////////////////////////////
 
-		for (auto& ball : m_context->m_balls->GetBalls())
+		for (int i = 0; i < m_max_sim_steps; i++)
 		{
-			// если у мяча еще осталось время на моделирование физики
-			if (ball->GetSimTime())
+			for (auto& ball : m_context->m_balls->GetBalls())
 			{
-				// обновление старого положения мяча
-				ball->SetOldPos(ball->getPosition());
-
-				// симуляция трат энергии путем создания отрицательного ускорения
-				ball->SetAcceleration(-ball->GetVelocity() * 0.8f);
-
-				// ДЛЯ КАЖДОГО ШАРА РАСЧИТЫВАЕМ НОВОЕ ПОЛОЖЕНИЕ
-				// расчет скорости с учетем оставшегося времени симуляции
-				// для текущего мяча
-				ball->IncreaseVelocity(ball->GetAcceleration() * ball->GetSimTime());
-
-				// расчет позиции
-				ball->move(ball->GetVelocity() * ball->GetSimTime());
-
-				// проверка на выход за экран
-
-				// выход за левую границу
-				if (ball->getPosition().x - ball->getRadius() < 0)
+				// если у мяча еще осталось время на моделирование физики
+				if (ball->GetSimTime() > 0.0f)
 				{
-					ball->setPosition(Vector2f(ball->getRadius() + 1, ball->getPosition().y));
-					ball->SetVelocity(Vector2f(-ball->GetVelocity().x, ball->GetVelocity().y));
-				}
-				// выход за правую границу
-				else if (ball->getPosition().x > wind_width - ball->getRadius())
-				{
-					ball->setPosition(Vector2f(wind_width - ball->getRadius() - 1, ball->getPosition().y));
-					ball->SetVelocity(Vector2f(-ball->GetVelocity().x, ball->GetVelocity().y));
-				}
-				// выход за верхнюю границу
-				else if (ball->getPosition().y - ball->getRadius() < 0)
-				{
-					ball->setPosition(Vector2f(ball->getPosition().x, ball->getRadius() + 1));
-					ball->SetVelocity(Vector2f(ball->GetVelocity().x, -ball->GetVelocity().y));
-				}
-				// выход за нижнюю границу
-				else if (ball->getPosition().y > wind_height - ball->getRadius())
-				{
-					ball->setPosition(Vector2f(ball->getPosition().x, wind_height - ball->getRadius() - 1));
-					ball->SetVelocity(Vector2f(ball->GetVelocity().x, -ball->GetVelocity().y));
-				}
+					// обновление старого положения мяча
+					ball->SetOldPos(ball->getPosition());
 
-				// когда скорость очень маленькая, шары стоит остановить
-				if (ball->GetVelocityScal() != 0 && ball->GetVelocityScal() < 0.5f)
-					ball->SetVelocity({ .0,.0 });
+					// симуляция трат энергии путем создания отрицательного ускорения
+					ball->SetAcceleration(-ball->GetVelocity() * 0.1f);
+
+					// ДЛЯ КАЖДОГО ШАРА РАСЧИТЫВАЕМ НОВОЕ ПОЛОЖЕНИЕ
+					// расчет скорости с учетем оставшегося времени симуляции
+					// для текущего мяча
+					ball->IncreaseVelocity(ball->GetAcceleration() * ball->GetSimTime());
+
+					// расчет позиции
+					ball->move(ball->GetVelocity() * ball->GetSimTime());
+
+					// проверка на выход за экран
+
+					// выход за левую границу
+					if (ball->getPosition().x - ball->getRadius() < 0)
+					{
+						ball->setPosition(Vector2f(ball->getRadius() + 1, ball->getPosition().y));
+						ball->SetVelocity(Vector2f(-ball->GetVelocity().x, ball->GetVelocity().y));
+					}
+					// выход за правую границу
+					else if (ball->getPosition().x > wind_width - ball->getRadius())
+					{
+						ball->setPosition(Vector2f(wind_width - ball->getRadius() - 1, ball->getPosition().y));
+						ball->SetVelocity(Vector2f(-ball->GetVelocity().x, ball->GetVelocity().y));
+					}
+					// выход за верхнюю границу
+					else if (ball->getPosition().y - ball->getRadius() < 0)
+					{
+						ball->setPosition(Vector2f(ball->getPosition().x, ball->getRadius() + 1));
+						ball->SetVelocity(Vector2f(ball->GetVelocity().x, -ball->GetVelocity().y));
+					}
+					// выход за нижнюю границу
+					else if (ball->getPosition().y > wind_height - ball->getRadius())
+					{
+						ball->setPosition(Vector2f(ball->getPosition().x, wind_height - ball->getRadius() - 1));
+						ball->SetVelocity(Vector2f(ball->GetVelocity().x, -ball->GetVelocity().y));
+					}
+
+					// когда скорость очень маленькая, шары стоит остановить
+					if (ball->GetVelocityScal() != 0 && ball->GetVelocityScal() < 0.05f)
+						ball->SetVelocity({ .0,.0 });
+				}
 			}
 		}
 
@@ -724,7 +726,7 @@ bool PhysicHandler::LogicHandling()
 
 		// итератор для перебора первого шара
 		std::list<std::shared_ptr<Ball>>::const_iterator source = m_context->m_balls->GetBalls().begin();
-		
+
 		// проходимся по всем шарам и пытаемся пересечь их друг с другом
 		while (source != m_context->m_balls->GetBalls().end())
 		{
@@ -782,14 +784,14 @@ bool PhysicHandler::LogicHandling()
 
 			// определение предполагаемой скорости шара
 			float sup_speed = (*source)->GetVelocityScal();
-			
+
 			// определение предполагаемого пройденного расстояния шаром
 			float sup_distance = sup_speed * (*source)->GetSimTime();
-			
+
 			// настоящее пройденное расстояние шаром
 			// (из-за столкновения оно может быть другим)
 			float actual_dist = DistBetweenPoints((*source)->getPosition(), (*source)->GetOldPos());
-		
+
 			// фактически затраченное время
 			float actual_time = actual_dist / sup_speed;
 
@@ -806,77 +808,51 @@ bool PhysicHandler::LogicHandling()
 		// проходимся по всем парам пересекшихся шаров
 		for (auto& collide_pair : m_context->m_collided_balls)
 		{
-
 			// первый шар из пары
-			auto& fst_ball = collide_pair.first;
+			auto& fball = collide_pair.first;
 			// творой шар из пары
-			auto& snd_ball = collide_pair.second;
+			auto& sball = collide_pair.second;
 
 			// пересчитываем растояние между центрами двух шаров
-			float center_dist = fst_ball->GetCenterDist(*snd_ball);
+			float center_dist = fball->GetCenterDist(*sball);
 
 			// считаем нормаль параллельную прямой,
 			// проходящей через центры шаров
 			Vector2f normal =
 			{
-				-fst_ball->GetXDist(*snd_ball) / center_dist,
-				-fst_ball->GetYDist(*snd_ball) / center_dist
+				-fball->GetXDist(*sball) / center_dist,
+				-fball->GetYDist(*sball) / center_dist
 			};
-
-			//lg.Info("normal: " + std::to_string(normal.x) + " " + std::to_string(normal.y));
-
-			// отрисовка нормали
-			/*{
-				Vertex line[] =
-				{
-					sf::Vertex(fst_ball->getPosition()),
-					sf::Vertex(fst_ball->getPosition() + normal * center_dist)
-				};
-				line[0].color = Color::Red;
-				line[1].color = Color::Red;
-
-				m_context->m_window->draw(line, 2, sf::Lines);
-			}*/
 
 			// строим перпендикулярный вектор нормали
 			Vector2f tangent = { -normal.y, normal.x };
 
-			// отрисовка перпендикуляра
-			/*{
-				Vertex line[] =
-				{
-					sf::Vertex(fst_ball->getPosition()),
-					sf::Vertex(fst_ball->getPosition() + tangent * center_dist)
-				};
-				line[0].color = Color::Yellow;
-				line[1].color = Color::Yellow;
-
-				m_context->m_window->draw(line, 2, sf::Lines);
-			}*/
-
 			// скалярное произведение перпендикуляров
-			auto vec1 = DotProduct(fst_ball->GetVelocity(), tangent);
-			auto vec2 = DotProduct(snd_ball->GetVelocity(), tangent);
+			auto vec1 = DotProduct(fball->GetVelocity(), tangent);
+			auto vec2 = DotProduct(sball->GetVelocity(), tangent);
 			Vector2f dpTan = { vec1.x + vec1.y, vec2.x + vec2.y };
 
 			// скалярное произведение нормалей
-			vec1 = DotProduct(fst_ball->GetVelocity(), normal);
-			vec2 = DotProduct(snd_ball->GetVelocity(), normal);
+			vec1 = DotProduct(fball->GetVelocity(), normal);
+			vec2 = DotProduct(sball->GetVelocity(), normal);
 			Vector2f dpNorm = { vec1.x + vec1.y, vec2.x + vec2.y };
 
-			// закон сохранения импульса
+			// ЗАКОН СОХРАНЕНИЯ ИМПУЛЬСА
+			// скорость первого после удара
 			float m1 =
-				(dpNorm.x * (fst_ball->GetMass() - snd_ball->GetMass())
-					+ 1.f * snd_ball->GetMass() * dpNorm.y) /
-				(fst_ball->GetMass() + snd_ball->GetMass());
+				(dpNorm.x * (fball->GetMass() - sball->GetMass())
+					+ 2.f * sball->GetMass() * dpNorm.y) /
+				(fball->GetMass() + sball->GetMass());
+
+			// скорость второго после удара
 			float m2 =
-				(dpNorm.y * (snd_ball->GetMass() - fst_ball->GetMass())
-					+ 1.f * fst_ball->GetMass() * dpNorm.x) /
-				(fst_ball->GetMass() + snd_ball->GetMass());
+				(dpNorm.y * (sball->GetMass() - fball->GetMass())
+					+ 2.f * fball->GetMass() * dpNorm.x) /
+				(fball->GetMass() + sball->GetMass());
 
 			// установка соответствующей скорости
-			fst_ball->SetVelocity(tangent * (dpTan.x) + normal * m1);
-			snd_ball->SetVelocity(tangent * (dpTan.y) + normal * m2);
+			fball->SetVelocity(tangent * (dpTan.x) + normal * m1);
+			sball->SetVelocity(tangent * (dpTan.y) + normal * m2);
 		}
 	}
 	return false;
@@ -902,8 +878,14 @@ protected:
 	// список текста, который надо отрисовать для шара
 	std::list<Text> m_text;
 
-	// список векторов
-	std::list<Vertex[2]> m_vectors;
+	// структура для хранения линии
+	struct Line
+	{
+		Vertex m_line[2];
+	};
+
+	// список линий пересекшихся шаров
+	std::list<Line> m_collided_lines;
 
 };
 
@@ -923,7 +905,7 @@ bool GodModHandler::LogicHandling()
 	{
 		// очистка списков
 		m_text.clear();
-		m_vectors.clear();
+		m_collided_lines.clear();
 
 		// отрисовка основных характеристик каждого шара
 		// если список шаров не пуст
@@ -977,12 +959,34 @@ bool GodModHandler::LogicHandling()
 				ball++;
 			}
 		}
+
+		// создание линий для пар пересекшихся шаров
+		for (auto& el : m_context->m_collided_balls)
+		{
+			// первый шар
+			auto& fball = *el.first;
+
+			// второй шар
+			auto& sball = *el.second;
+
+			// добавление координат
+			Line ln;
+			ln.m_line[0] = Vertex(fball.getPosition());
+			ln.m_line[1] = Vertex(sball.getPosition());
+
+			// Устанавливаем белый цвет линий пересечения
+			ln.m_line[0].color = ln.m_line[1].color = Color::White;
+
+			// добавляем в список линий
+			m_collided_lines.emplace_back(ln);
+		}
+
 	}
 	else
 	{
 		// очистка списков
 		m_text.clear();
-		m_vectors.clear();
+		m_collided_lines.clear();
 	}
 
 	return false;
@@ -994,6 +998,11 @@ bool GodModHandler::DrawHandling()
 	for (auto& txt : m_text)
 		m_context->m_window->draw(txt);
 
+	// отрисовка пересекшихся пар 
+	for (auto& el : m_collided_lines)
+		m_context->m_window->draw(el.m_line, 2, sf::Lines);
+
+
 	return false;
 }
 
@@ -1002,7 +1011,7 @@ int main()
 {
 	// TODO: [] посмотреть второй урок, в котором реализуется коллизия шаров с плоскостями и сделать тоже самое
 	//		 [+] Коллизия неправильно определяется с объектами разного радиуса (возможно проблема в скорости обработки физики, это тоже в уроке втором фиксится)
-	//		 [] Добавить возможность выводить информацию о шарах
+	//		 [+] Добавить возможность выводить информацию о шарах
 
 	lg.Info("Start Program");
 
