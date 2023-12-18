@@ -133,8 +133,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\handlers\GodModHandler.cpp" />
+    <ClCompile Include="src\handlers\KeyboardHandler.cpp" />
+    <ClCompile Include="src\handlers\MouseHandler.cpp" />
+    <ClCompile Include="src\handlers\PhysicHandler.cpp" />
+    <ClCompile Include="src\handlers\WindowHandler.cpp" />
     <ClCompile Include="src\logger\Logger.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\objects\balls\Ball.cpp" />
+    <ClCompile Include="src\objects\balls\BlueBall.cpp" />
+    <ClCompile Include="src\objects\balls\RedBall.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -145,6 +153,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\balls\Ball.h" />
+    <ClInclude Include="src\balls\BlueBall.h" />
+    <ClInclude Include="src\balls\RedBall.h" />
+    <ClInclude Include="src\handlers\ABCHandler.h" />
+    <ClInclude Include="src\handlers\GodModHandler.h" />
+    <ClInclude Include="src\handlers\IncludeAllHandlers.h" />
+    <ClInclude Include="src\handlers\KeyboardHandler.h" />
+    <ClInclude Include="src\handlers\MouseHandler.h" />
+    <ClInclude Include="src\handlers\PhysicHandler.h" />
+    <ClInclude Include="src\handlers\WindowHandler.h" />
+    <ClInclude Include="src\math\Vec2.h" />
+    <ClInclude Include="src\objects\balls\Ball.h" />
+    <ClInclude Include="src\objects\balls\BlueBall.h" />
+    <ClInclude Include="src\objects\balls\IncludeAllBalls.h" />
+    <ClInclude Include="src\objects\balls\RedBall.h" />
+    <ClInclude Include="src\objects_list\BallList.h" />
+    <ClInclude Include="src\ProgContext.h" />
     <ClInclude Include="src\logger\Logger.h" />
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
