@@ -118,7 +118,7 @@ bool MouseHandler::EventHandling(const Event& evnt)
 				m_shooting_vec = -(m_mouse_pos - (*m_moving_ball)->getPosition());
 
 				// установка скорости для шара
-				(*m_moving_ball)->SetVelocity(1.f * m_shooting_vec);
+				(*m_moving_ball)->SetVelocity(2.f * m_shooting_vec);
 
 				// говорим, что больше нет выбранного шара для выстрела
 				m_moving_ball = m_context->m_balls->GetBalls().end();

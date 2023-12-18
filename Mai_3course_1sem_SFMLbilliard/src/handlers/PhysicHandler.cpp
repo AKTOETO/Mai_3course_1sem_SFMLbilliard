@@ -1,7 +1,7 @@
 ﻿#include "PhysicHandler.h"
 
 PhysicHandler::PhysicHandler(std::shared_ptr<ProgContext> context)
-	:ABCHandler(context), m_sim_updates(1), m_sim_elapsed_time(.0),
+	:ABCHandler(context), m_sim_updates(5), m_sim_elapsed_time(.0),
 	m_max_sim_steps(2)
 {}
 
