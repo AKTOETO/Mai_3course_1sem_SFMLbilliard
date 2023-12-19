@@ -70,9 +70,5 @@ struct ProgContext
 		m_following_ball = m_balls->GetBalls().end();
 	}
 };
-// макросы для удобного использования логгера
-#define INFO(msg) m_context->m_logger->Info(msg)
-#define WARN(msg) m_context->m_logger->Warning(msg)
-#define ERRO(msg) m_context->m_logger->Error(msg)
 
 #endif

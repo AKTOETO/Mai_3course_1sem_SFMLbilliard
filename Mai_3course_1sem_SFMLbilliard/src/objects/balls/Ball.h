@@ -42,11 +42,7 @@ public:
 	const float& GetSimTime() const { return m_remanin_sim_time; }
 	Vector2f GetOldPos() const { return m_old_pos; }
 
-	void SetVelocity(const Vector2f& vel)
-	{
-		//lg.Info("current velocity: " + std::to_string(GetVelocityScal()));
-		m_vel = vel;
-	}
+	void SetVelocity(const Vector2f& vel) { m_vel = vel; }
 	void SetAcceleration(const Vector2f& acc) { m_acc = acc; }
 	void SetSimTime(const float& time) { m_remanin_sim_time = time; }
 	void SetOldPos(const Vector2f& vec) { m_old_pos = vec; }

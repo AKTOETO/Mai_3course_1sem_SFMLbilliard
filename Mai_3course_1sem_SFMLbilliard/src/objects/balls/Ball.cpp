@@ -35,9 +35,7 @@ float Ball::GetCenterDist(const Ball& ball)
 
 float Ball::GetXDist(const Ball& ball)
 {
-	return (this->getPosition().x
-		- ball.getPosition().x
-		);
+	return (this->getPosition().x - ball.getPosition().x);
 }
 
 float Ball::GetYDist(const Ball& ball)

@@ -133,7 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\handlers\GodModHandler.cpp" />
+    <ClCompile Include="src\handlers\GodModeHandler.cpp" />
     <ClCompile Include="src\handlers\KeyboardHandler.cpp" />
     <ClCompile Include="src\handlers\MouseHandler.cpp" />
     <ClCompile Include="src\handlers\PhysicHandler.cpp" />
@@ -161,7 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\handlers\ABCHandler.h" />
-    <ClInclude Include="src\handlers\GodModHandler.h" />
+    <ClInclude Include="src\handlers\GodModeHandler.h" />
     <ClInclude Include="src\handlers\IncludeAllHandlers.h" />
     <ClInclude Include="src\handlers\KeyboardHandler.h" />
     <ClInclude Include="src\handlers\MouseHandler.h" />

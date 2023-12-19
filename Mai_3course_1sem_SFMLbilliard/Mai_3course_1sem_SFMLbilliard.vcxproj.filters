@@ -45,7 +45,7 @@
     <ClCompile Include="src\handlers\PhysicHandler.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\handlers\GodModHandler.cpp">
+    <ClCompile Include="src\handlers\GodModeHandler.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,7 +100,7 @@
     <ClInclude Include="src\handlers\PhysicHandler.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\handlers\GodModHandler.h">
+    <ClInclude Include="src\handlers\GodModeHandler.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\handlers\IncludeAllHandlers.h">

@@ -5,7 +5,6 @@ bool WindowHandler::EventHandling(const Event& evnt)
 	switch (evnt.type)
 	{
 	case Event::Closed:
-		//lg.Info("Exiting the program");
 		m_context->m_window->close();
 		break;
 

@@ -26,10 +26,6 @@ public:
 
 		// если же шар не пересекся с другими, добавляем его в список шаров
 		m_balls.emplace_back(ball);
-		//lg.Info("ball spawned at:" +
-		//	std::to_string(int(ball->getPosition().x)) + " " +
-		//	std::to_string(int(ball->getPosition().y))
-		//);
 	}
 
 	// удалить шар

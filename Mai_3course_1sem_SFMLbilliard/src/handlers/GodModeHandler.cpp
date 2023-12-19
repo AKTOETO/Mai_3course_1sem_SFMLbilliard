@@ -1,4 +1,4 @@
-﻿#include "GodModHandler.h"
+﻿#include "GodModeHandler.h"
 
 GodModHandler::GodModHandler(std::shared_ptr<ProgContext> context)
 	:ABCHandler(context)
@@ -111,7 +111,6 @@ bool GodModHandler::DrawHandling()
 	// отрисовка пересекшихся пар 
 	for (auto& el : m_collided_lines)
 		m_context->m_window->draw(el.m_line, 2, sf::Lines);
-
 
 	return false;
 }
