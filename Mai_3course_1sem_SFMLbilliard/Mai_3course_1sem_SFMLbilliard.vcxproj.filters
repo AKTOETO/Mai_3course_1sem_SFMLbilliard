@@ -24,15 +24,6 @@
     <ClCompile Include="src\logger\Logger.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\balls\Ball.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Balls\BlueBall.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Balls\RedBall.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\balls\Ball.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -61,6 +52,13 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="..\README.md" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="..\x64\Release\Mai_3course_1sem_SFMLbilliard.exe" />
+    <None Include="..\x64\Release\Mai_3course_1sem_SFMLbilliard.pdb" />
+    <None Include="..\x64\Release\openal32.dll" />
+    <None Include="..\x64\Release\sfml-graphics-2.dll" />
+    <None Include="..\x64\Release\sfml-system-2.dll" />
+    <None Include="..\x64\Release\sfml-window-2.dll" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h">
@@ -73,15 +71,6 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\ProgContext.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="src\balls\Ball.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="src\balls\BlueBall.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="src\balls\RedBall.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\balls\Ball.h">

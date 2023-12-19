@@ -143,7 +143,6 @@
     <ClCompile Include="src\objects\balls\Ball.cpp" />
     <ClCompile Include="src\objects\balls\BlueBall.cpp" />
     <ClCompile Include="src\objects\balls\RedBall.cpp" />
-    <ClCompile Include="src\objects\walls\Wall.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -151,6 +150,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+    <None Include="..\x64\Release\Mai_3course_1sem_SFMLbilliard.exe" />
+    <None Include="..\x64\Release\Mai_3course_1sem_SFMLbilliard.pdb" />
+    <None Include="..\x64\Release\openal32.dll" />
+    <None Include="..\x64\Release\sfml-graphics-2.dll" />
+    <None Include="..\x64\Release\sfml-system-2.dll" />
+    <None Include="..\x64\Release\sfml-window-2.dll" />
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -167,9 +172,7 @@
     <ClInclude Include="src\objects\balls\BlueBall.h" />
     <ClInclude Include="src\objects\balls\IncludeAllBalls.h" />
     <ClInclude Include="src\objects\balls\RedBall.h" />
-    <ClInclude Include="src\objects\walls\Wall.h" />
     <ClInclude Include="src\objects_list\BallList.h" />
-    <ClInclude Include="src\objects_list\WallList.h" />
     <ClInclude Include="src\ProgContext.h" />
     <ClInclude Include="src\logger\Logger.h" />
     <ClInclude Include="src\pch.h" />

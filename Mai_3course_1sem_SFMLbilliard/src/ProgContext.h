@@ -3,7 +3,6 @@
 
 #include "pch.h"
 #include "objects_list/BallList.h"
-#include "objects_list/WallList.h"
 #include "logger/Logger.h"
 
 // контекст программы
@@ -38,16 +37,6 @@ struct ProgContext
 	// список пар пересекшихся шаров
 	std::list<std::pair<std::shared_ptr<Ball>, std::shared_ptr<Ball>>> m_collided_balls;
 
-	////////////
-	//	СТЕНЫ
-	////////////
-
-	// указатель на массив со стенами
-	std::unique_ptr<WallList> m_walls;
-
-	// выбранная стена для перемещения с помощью колесика
-	std::list<std::shared_ptr<Wall>>::const_iterator m_following_wall;
-
 	// конструктор
 	ProgContext()
 		:m_dT(.0), m_god_mode(1),
@@ -79,12 +68,6 @@ struct ProgContext
 
 		// определение шара нулевым значением
 		m_following_ball = m_balls->GetBalls().end();
-
-		// создание массива со стенами
-		m_walls = std::make_unique<WallList>();
-
-		// определение стены нулевым эначением
-		m_following_wall = m_walls->GetWalls().end();
 	}
 };
 // макросы для удобного использования логгера

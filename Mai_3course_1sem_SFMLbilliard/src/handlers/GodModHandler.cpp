@@ -5,10 +5,7 @@ GodModHandler::GodModHandler(std::shared_ptr<ProgContext> context)
 {
 	// загрузка необходимых шрифтов
 	if (!m_charac_desc_font.loadFromFile("assets/fonts/Disket-Mono-Regular.ttf"))
-	{
-		//lg.Warning(std::string("Font \'") + "assets/fonts/Disket-Mono-Regular.ttf"
-		//	+ "\' wasn`t loaded");
-	}
+	{}
 }
 
 bool GodModHandler::LogicHandling()
