@@ -3,16 +3,6 @@
 
 #include "../objects/walls/Wall.h"
 
-// TODO:
-// 1) можно сделать АБК класса
-// ObjectList<object>, чтобы можно было управлять 
-// созданием шаров, стен, итд...
-// Унаследоваться от этого интерфейса и сделать 
-// WallList и BallList
-// 2) при добавлении АБС сделать object тоже АБК
-// У которого есть метод IsIntersected
-
-
 // список стен
 class WallList : public Drawable
 {
@@ -24,22 +14,8 @@ public:
 	// добавить стену
 	void AddWall(const std::shared_ptr<Wall>& wall)
 	{
-		// перебираем все шары и смотрим, есть ли пересечение
-		// с тем, что мы хотим добавить
-		//for (auto& mball : m_walls)
-		//{
-		//	// если шар пересекается с каким-либо уже существующим,
-		//	// то просто выходим из функции, не добваляя новый шар
-		//	if (ball->IsIntersected(*mball))
-		//		return;
-		//}
-
 		// если же шар не пересекся с другими, добавляем его в список шаров
 		m_walls.emplace_back(wall);
-		//lg.Info("ball spawned at:" +
-		//	std::to_string(int(ball->getPosition().x)) + " " +
-		//	std::to_string(int(ball->getPosition().y))
-		//);
 	}
 
 	// удалить стену

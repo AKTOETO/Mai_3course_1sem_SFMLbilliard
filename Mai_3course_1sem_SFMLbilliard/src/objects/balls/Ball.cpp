@@ -15,9 +15,6 @@ Ball::Ball(float radius, Vector2f pos,
 	setOutlineColor(Color::Black);
 	setOutlineThickness(m_outline_thickness);
 	setOrigin({ radius, radius });
-
-	//lg.Info("center in: " + std::to_string(m_radius / 2) + " " + std::to_string(m_radius / 2) +
-	//	" radius: " + std::to_string(m_radius));
 }
 
 bool Ball::IsIntersected(const Ball& ball)
@@ -32,21 +29,20 @@ bool Ball::IsIntersected(const Ball& ball)
 
 float Ball::GetCenterDist(const Ball& ball)
 {
-	// TODO поменять это на функцию DistBetweenPoints
 	// Для начала следует найти расстояние между центром шаров
 	return sqrtf(powf(GetXDist(ball), 2) + powf(GetYDist(ball), 2));
 }
 
 float Ball::GetXDist(const Ball& ball)
 {
-	return (this->getPosition().x// + this->getRadius()
-		- ball.getPosition().x //+ ball.getRadius()
+	return (this->getPosition().x
+		- ball.getPosition().x 
 		);
 }
 
 float Ball::GetYDist(const Ball& ball)
 {
-	return (this->getPosition().y// + this->getRadius()
-		- ball.getPosition().y //+ ball.getRadius()
+	return (this->getPosition().y
+		- ball.getPosition().y
 		);
 }
