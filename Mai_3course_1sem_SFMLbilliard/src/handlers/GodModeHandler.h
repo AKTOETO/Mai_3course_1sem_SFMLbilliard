@@ -4,11 +4,11 @@
 #include "ABCHandler.h"
 
 // обработчик отрисовки интерфейса бога
-class GodModHandler
+class GodModeHandler
 	:public ABCHandler
 {
 public:
-	GodModHandler(std::shared_ptr<ProgContext> context);
+	GodModeHandler(std::shared_ptr<ProgContext> context);
 
 	// обработка логики
 	virtual bool LogicHandling() override;

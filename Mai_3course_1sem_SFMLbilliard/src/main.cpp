@@ -18,7 +18,7 @@ int main()
 		std::make_shared<KeyboardHandler>(cnxt),
 		std::make_shared<WindowHandler>(cnxt),
 		std::make_shared<PhysicHandler>(cnxt),
-		std::make_unique<GodModHandler>(cnxt)
+		std::make_unique<GodModeHandler>(cnxt)
 	};
 
 	// цикл программы

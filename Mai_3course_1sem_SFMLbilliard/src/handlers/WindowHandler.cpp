@@ -21,8 +21,7 @@ bool WindowHandler::EventHandling(const Event& evnt)
 
 bool WindowHandler::LogicHandling()
 {
-
-	// вычисление времени прошежшего с последнего кадра
+	// вычисление времени прошедшего с последнего кадра
 	m_cur_time = m_clock.getElapsedTime();
 	m_context->m_dT = m_cur_time.asMilliseconds() - m_last_time.asMilliseconds();
 	m_context->m_dT /= 800;

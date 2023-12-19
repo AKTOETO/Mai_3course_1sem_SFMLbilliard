@@ -7,29 +7,29 @@
       <FileName>src\handlers\ABCHandler.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GodModHandler" Collapsed="true">
-    <Position X="8.5" Y="2" Width="1.5" />
+  <Class Name="GodModeHandler" Collapsed="true">
+    <Position X="9" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAEAAAAAAAAAAAAAAAAogABAAAAAAA=</HashCode>
-      <FileName>src\handlers\GodModHandler.h</FileName>
+      <HashCode>AAAAAAAAAAAAAwAEAAAAAAAAAAAAAAAAIgABAAAAAAA=</HashCode>
+      <FileName>src\handlers\GodModeHandler.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeyboardHandler" Collapsed="true">
-    <Position X="13" Y="2" Width="1.5" />
+    <Position X="12.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAACAAAAAAAAA=</HashCode>
       <FileName>src\handlers\KeyboardHandler.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MouseHandler" Collapsed="true">
-    <Position X="15.25" Y="2" Width="1.5" />
+    <Position X="14.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAABAAAAAAAEIAAAAAQAAAAAAABAAAEAAA=</HashCode>
       <FileName>src\handlers\MouseHandler.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PhysicHandler" Collapsed="true">
-    <Position X="6.25" Y="2" Width="1.5" />
+    <Position X="7.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAABAAgAAAAIAAABAAAAAAA=</HashCode>
       <FileName>src\handlers\PhysicHandler.h</FileName>
@@ -43,58 +43,44 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Ball" Collapsed="true">
-    <Position X="7.25" Y="3.75" Width="1.5" />
+    <Position X="10.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEkAYIIAAQAAAAAAAAEAAgAAFCBCFEAAQQCAII=</HashCode>
       <FileName>src\objects\balls\Ball.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BlueBall" Collapsed="true">
-    <Position X="8.25" Y="5.25" Width="1.5" />
+    <Position X="11.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>src\objects\balls\BlueBall.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RedBall" Collapsed="true">
-    <Position X="6" Y="5.25" Width="1.5" />
+    <Position X="9.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\objects\balls\RedBall.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BallList" Collapsed="true">
-    <Position X="10.5" Y="3.75" Width="1.5" />
+    <Position X="14.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAAACIAAAAAAAAAAQAAAAAAAAAAQAA=</HashCode>
       <FileName>src\objects_list\BallList.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Logger" Collapsed="true">
-    <Position X="10.5" Y="5.75" Width="1.5" />
+    <Position X="14.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQoAAIAEMAAQAAAAAAABAgQAAAQAIAABAAAEACAAA=</HashCode>
       <FileName>src\logger\Logger.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Wall" Collapsed="true">
-    <Position X="13" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAIAAAAAAIAAAAAAAAAAAQQAAAAAAAAAAA=</HashCode>
-      <FileName>src\objects\walls\Wall.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="WallList" Collapsed="true">
-    <Position X="12.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAIAAAIAAAAAAQgAAAAAAAAAAAE=</HashCode>
-      <FileName>src\objects_list\WallList.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Struct Name="ProgContext" Collapsed="true">
-    <Position X="10.5" Y="5" Width="1.5" />
+    <Position X="14.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAACAAAAAAAAAgAQAEAAQgABQAAABAAAIA=</HashCode>
+      <HashCode>CAAAAAAAAAAACAAAAAAAAAgAQAEAAQgABAAAABAAAIA=</HashCode>
       <FileName>src\ProgContext.h</FileName>
     </TypeIdentifier>
   </Struct>

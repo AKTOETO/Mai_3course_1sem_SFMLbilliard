@@ -1,6 +1,6 @@
 ﻿#include "GodModeHandler.h"
 
-GodModHandler::GodModHandler(std::shared_ptr<ProgContext> context)
+GodModeHandler::GodModeHandler(std::shared_ptr<ProgContext> context)
 	:ABCHandler(context)
 {
 	// загрузка необходимых шрифтов
@@ -8,7 +8,7 @@ GodModHandler::GodModHandler(std::shared_ptr<ProgContext> context)
 	{}
 }
 
-bool GodModHandler::LogicHandling()
+bool GodModeHandler::LogicHandling()
 {
 	// если включен режим бога
 	if (m_context->m_god_mode)
@@ -102,7 +102,7 @@ bool GodModHandler::LogicHandling()
 	return false;
 }
 
-bool GodModHandler::DrawHandling()
+bool GodModeHandler::DrawHandling()
 {
 	// отрисовка текста на экране рядом с мячиком
 	for (auto& txt : m_text)
