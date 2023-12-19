@@ -3,14 +3,9 @@
 #include "handlers/IncludeAllHandlers.h"
 using namespace sf;
 
-// логгер
-static Logger lg(Logger::LogMode::ConsoleAndFile);
-
 // главная функция
 int main()
 {
-	lg.Info("Start Program");
-
 	srand(time(NULL));
 
 	// создание контекста приложения
@@ -50,20 +45,6 @@ int main()
 		// отрисовка
 		for (auto& el : handlers)
 			el->DrawHandling();
-
-		// отрисовка линий контакта шаров
-		/*for (auto& col_pair : cnxt->m_collided_balls)
-		{
-			Vertex line[] =
-			{
-				sf::Vertex(col_pair.first->getPosition()),
-				sf::Vertex(col_pair.second->getPosition())
-			};
-			line[0].color = Color::Red;
-			line[1].color = Color::Red;
-
-			cnxt->m_window->draw(line, 2, sf::Lines);
-		}*/
 
 		cnxt->m_window->display();
 
